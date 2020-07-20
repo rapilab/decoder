@@ -6,12 +6,19 @@
 
 ### Dalvik
 
- - Documents [Creating a Dalvik parser in Rust](https://superanalyzer.rocks/2016/10/18/dalvik-parser-1)
+Documents:
+
+ - [Creating a Dalvik parser in Rust](https://superanalyzer.rocks/2016/10/18/dalvik-parser-1)
+ - [Reverse engineering and penetration testing on Android apps: my own list of tools](https://www.andreafortuna.org/2019/07/18/reverse-engineering-and-penetration-testing-on-android-apps-my-own-list-of-tools/)
 
 Library:
 
- - [https://github.com/letmutx/dex-parser](https://github.com/letmutx/dex-parser)  Rust parser for Android's dex format 
+ - [https://github.com/letmutx/dex-parser](https://github.com/letmutx/dex-parser)  Rust parser for Android's dex format. 
  - [https://github.com/SUPERAndroidAnalyzer/dalvik](https://github.com/SUPERAndroidAnalyzer/dalvik)  Dalvik parser in pure Rust. 
+
+Converter
+ 
+  - [dex2jar](https://github.com/pxb1988/dex2jar)  Tools to work with android .dex and java .class files.
 
 ### ELF
 
@@ -41,6 +48,10 @@ Library:
  - Fixed-point engine for data-flow analysis and abstract interpretation.
  - Performant memory models for analysis.
  - A concrete executor over Falcon IL.
+
+### Proguard
+
+ - [Rust Proguard Parser](https://github.com/getsentry/rust-proguard)
 
 ## Documents
 
