@@ -33,8 +33,15 @@ mod tests {
     use crate::parse_buffer;
 
     #[test]
-    fn test_parser_files() {
+    fn test_parse_c_binary() {
         let path = Path::new("../_fixtures/c/hello");
+        parse_buffer(path);
+        assert_eq!(true, true)
+    }
+
+    #[test]
+    fn test_parse_rust_binary() {
+        let path = Path::new("../_fixtures/rust/hello");
         parse_buffer(path);
         assert_eq!(true, true)
     }
