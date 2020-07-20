@@ -4,6 +4,17 @@
 
 ## Library
 
+### Dalvik
+
+ - Documents [Creating a Dalvik parser in Rust](https://superanalyzer.rocks/2016/10/18/dalvik-parser-1)
+
+Library:
+
+ - [https://github.com/letmutx/dex-parser](https://github.com/letmutx/dex-parser)  Rust parser for Android's dex format 
+ - [https://github.com/SUPERAndroidAnalyzer/dalvik](https://github.com/SUPERAndroidAnalyzer/dalvik)  Dalvik parser in pure Rust. 
+
+### ELF
+
  - [Falcon](https://github.com/falconre/falcon)  is a formal binary analysis framework in Rust.
  - [panopticon](https://gitlab.com/p8n/panopticon) A libre program analysis library for machine code.
  - [libgoblin](https://github.com/m4b/goblin) An impish, cross-platform binary parsing crate, written in Rust.
