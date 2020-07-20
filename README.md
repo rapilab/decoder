@@ -8,6 +8,13 @@
  - linux -> [Smallest x86 ELF Hello World](http://timelessname.com/elfbin/)
  - [ELF Hello World Tutorial](https://cirosantilli.com/elf-hello-world)
 
+Video:
+
+ - [The Teensy ELF Executable](https://www.muppetlabs.com/~breadbox/software/tiny/techtalk.html)
+
+### Videos Tools 
+
+`script`, `scriptreplay`, `recordmydesktop`, `audacity`, `pitivi`, and `ffmpeg`. 
 
 License
 ---
