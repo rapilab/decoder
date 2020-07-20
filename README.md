@@ -5,7 +5,9 @@
 
 ## Documents
 
-[Smallest x86 ELF Hello World](http://timelessname.com/elfbin/)
+ - linux -> [Smallest x86 ELF Hello World](http://timelessname.com/elfbin/)
+ - [ELF Hello World Tutorial](https://cirosantilli.com/elf-hello-world)
+
 
 License
 ---
