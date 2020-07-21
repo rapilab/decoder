@@ -14,7 +14,7 @@ fn main() {
     println!("Hello, world!");
 }
 
-pub fn parse_apk(apk_path: String, target_file: String) -> Result<String, Error> {
+pub fn get_content_by_file(apk_path: String, target_file: String) -> Result<String, Error> {
     let android_resources_content = abxml::STR_ARSC.to_owned();
 
     let file = std::fs::File::open(&apk_path)?;
@@ -77,19 +77,14 @@ fn parse_xml<'a>(content: &[u8], resources: &'a Resources<'a>) -> Result<String,
 
 #[cfg(test)]
 mod tests {
-    use crate::parse_apk;
+    use crate::get_content_by_file;
 
     #[test]
-    fn test_parse_apk_binary() {
-        let result = parse_apk(String::from("../_fixtures/apk/app-release-unsigned.apk"),
-                               String::from("AndroidManifest.xml"));
-        match result {
-            Ok(str) => {
-                assert_eq!(true, str.contains("com.phodal.myapplication"));
-            }
-            Err(_) => {
-                println!("error")
-            }
+    fn test_parse_zip_file() {
+        let result = get_content_by_file(String::from("../_fixtures/apk/app-release-unsigned.apk"),
+                                         String::from("AndroidManifest.xml"));
+        if let Ok(str) = result {
+            assert_eq!(true, str.contains("com.phodal.myapplication"));
         }
     }
 }
