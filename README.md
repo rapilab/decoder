@@ -2,6 +2,18 @@
 
 > research for .class, oat, elf & oat format file for compiler.
 
+## Usage
+
+ - [x] papk: unpack apk
+ - [ ] poat: unpack oat
+ - [ ] pelf: unpack elf
+ - [ ] pdex: unpack dex
+ - [ ] pclass: unpack class
+
+```
+decoder --papk _fixtures/apk/app-release-unsigned.apk
+```
+
 ## Library
 
 ### Dalvik
