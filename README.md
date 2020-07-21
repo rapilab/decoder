@@ -54,6 +54,19 @@ Converter
 
  - [Rust Proguard Parser](https://github.com/getsentry/rust-proguard)
 
+### APK
+
+ - [https://github.com/avast/apkparser](https://github.com/avast/apkparser) is a  APK manifest & resources parsing in Golang.
+
+### Resources
+
+ - [https://github.com/imager-io/imager](https://github.com/imager-io/imager)  Automated image compression for efficiently distributing images on the web.
+ - [https://github.com/LiweiGogoing/resourcesParse](https://github.com/LiweiGogoing/resourcesParse)
+
+#### Documents 
+ 
+ - [Android 手把手分析resources.arsc](https://juejin.im/post/5d4e60c15188255d2a78b86d)
+
 ## Documents
 
  - linux -> [Smallest x86 ELF Hello World](http://timelessname.com/elfbin/)
@@ -70,7 +83,6 @@ Video:
 ## Specification
 
  - [Dalvik Executable format](https://source.android.com/devices/tech/dalvik/dex-format)
- 
 
 License
 ---
