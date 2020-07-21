@@ -10,7 +10,7 @@ edition = "2018"
 
 [workspace]
 members = [
-    "dex",
+    "pdex",
     "elf",
     "oat",
     "class"
