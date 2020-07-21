@@ -14,10 +14,9 @@ fn main() {
     println!("Hello, world!");
 }
 
-pub fn parse_apk(apk_path: String, target_file: String) -> Result<(), Error> {
+pub fn parse_apk(apk_path: String, target_file: String) -> Result<String, Error> {
     let android_resources_content = abxml::STR_ARSC.to_owned();
 
-    // APK
     let file = std::fs::File::open(&apk_path)?;
     let mut archive = zip::ZipArchive::new(file).unwrap();
 
@@ -36,7 +35,6 @@ pub fn parse_apk(apk_path: String, target_file: String) -> Result<(), Error> {
 
         if current_file.name().contains(&target_file) {
             {
-                println!("Current file: {}", current_file.name());
                 let mut xml_content = Vec::new();
                 current_file.read_to_end(&mut xml_content)?;
                 let new_content = xml_content.clone();
@@ -44,12 +42,12 @@ pub fn parse_apk(apk_path: String, target_file: String) -> Result<(), Error> {
                 let resources = resources_visitor.get_resources();
                 let out =
                     parse_xml(&new_content, resources).context("could not decode target file")?;
-                println!("{}", out);
+                return Ok(out);
             }
         }
     }
 
-    Ok(())
+    bail!("could not find results")
 }
 
 fn parse_xml<'a>(content: &[u8], resources: &'a Resources<'a>) -> Result<String, Error> {
@@ -80,15 +78,14 @@ fn parse_xml<'a>(content: &[u8], resources: &'a Resources<'a>) -> Result<String,
 #[cfg(test)]
 mod tests {
     use crate::parse_apk;
-    use failure::Error;
 
     #[test]
     fn test_parse_apk_binary() {
         let result = parse_apk(String::from("../_fixtures/apk/app-release-unsigned.apk"),
-                               String::from("standalone_badge.xml"));
+                               String::from("AndroidManifest.xml"));
         match result {
-            Ok(_) => {
-                println!("zz")
+            Ok(str) => {
+                assert_eq!(true, str.contains("com.phodal.myapplication"));
             }
             Err(_) => {
                 println!("error")
