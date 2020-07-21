@@ -5,12 +5,9 @@ fn main() {
     let app = App::new("decoder")
         .version("0.0.1");
 
-    let name_option = Arg::with_name("papk")
-        .long("papk")
-        .takes_value(true)
-        .required(true);
+    let papk_opt = Arg::with_name("papk").long("papk");
 
-    let app = app.arg(name_option);
+    let app = app.arg(papk_opt);
     let matches = app.get_matches();
 
     let papk = matches.value_of("papk");
