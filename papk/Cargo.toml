@@ -11,3 +11,7 @@ zip = "0.5"
 abxml = "0.8.2"
 log = "0.4.11"
 failure = "0.1.8"
+
+[lib]
+name = "papk"
+path = "src/lib.rs"

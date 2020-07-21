@@ -8,3 +8,7 @@ edition = "2018"
 
 [dependencies]
 goblin = "0.2"
+
+[lib]
+name = "pelf"
+path = "src/lib.rs"

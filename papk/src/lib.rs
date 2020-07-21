@@ -10,10 +10,6 @@ use abxml::visitor::{ModelVisitor, Executor, XmlVisitor, Resources};
 use abxml::encoder::Xml;
 use failure::{bail, Error, ResultExt};
 
-fn main() {
-    println!("Hello, world!");
-}
-
 pub fn get_content_by_file(apk_path: String, target_file: String) -> Result<String, Error> {
     let android_resources_content = abxml::STR_ARSC.to_owned();
 
