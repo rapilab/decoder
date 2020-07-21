@@ -13,6 +13,7 @@ Documents:
 
 Library:
 
+ - [https://github.com/mdeg/dexparser](https://github.com/mdeg/dexparser) A Rust library for parsing Android's DEX file format with parser combinators.
  - [https://github.com/letmutx/dex-parser](https://github.com/letmutx/dex-parser)  Rust parser for Android's dex format. 
  - [https://github.com/SUPERAndroidAnalyzer/dalvik](https://github.com/SUPERAndroidAnalyzer/dalvik)  Dalvik parser in pure Rust. 
 
@@ -65,6 +66,11 @@ Video:
 ### Videos Tools 
 
 `script`, `scriptreplay`, `recordmydesktop`, `audacity`, `pitivi`, and `ffmpeg`. 
+
+## Specification
+
+ - [Dalvik Executable format](https://source.android.com/devices/tech/dalvik/dex-format)
+ 
 
 License
 ---
