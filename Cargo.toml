@@ -13,6 +13,9 @@ syntect = "4.2"
 [dependencies.papk]
 path = "papk"
 
+[dependencies.pclass]
+path = "pclass"
+
 [workspace]
 members = [
     "pdex",

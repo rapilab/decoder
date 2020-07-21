@@ -3,6 +3,7 @@ mod highlight;
 use clap::{Arg, App};
 use papk::get_content_by_file;
 use crate::highlight::highlight_out;
+use pclass::parse_class;
 
 fn main() {
     let app = App::new("decoder")
@@ -23,6 +24,12 @@ fn main() {
             cmd_papk(String::from(str))
         }
     }
+
+    parse_class(b"");
+}
+
+pub fn p_class() {
+    parse_class(b"");
 }
 
 pub fn cmd_papk(str: String) {
