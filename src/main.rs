@@ -1,7 +1,7 @@
 mod highlight;
 
 use clap::{Arg, App};
-use papk::get_content_by_file;
+use papk::{get_content_by_file, get_class_dex};
 use crate::highlight::highlight_out;
 use pclass::parse_class;
 
@@ -37,12 +37,9 @@ fn main() {
 }
 
 pub fn p_class(str: String) {
-    let result = get_content_by_file(str, String::from(".class"));
-    match result {
-        Ok(str) => {
-
-        },
-        Err(_) => {},
+    let result = get_class_dex(String::from(str));
+    if let Ok(bytes) = result {
+        // println!("{:?}", bytes)
     }
 }
 

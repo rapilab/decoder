@@ -10,6 +10,32 @@ use abxml::visitor::{ModelVisitor, Executor, XmlVisitor, Resources};
 use abxml::encoder::Xml;
 use failure::{bail, Error, ResultExt};
 
+#[derive(Debug, Clone)]
+pub enum ApkType {
+    Xml {
+        content: String,
+    },
+    Class {
+        content: Vec<u8>
+    }
+}
+
+pub fn get_class_dex(apk_path: String) -> Result<Vec<u8>, Error> {
+    let mut class_dex: Vec<u8> = vec![];
+
+    let file = std::fs::File::open(&apk_path)?;
+    let mut archive = zip::ZipArchive::new(file).unwrap();
+    archive.by_name("classes.dex")
+        .unwrap()
+        .read_to_end(&mut class_dex);
+
+    if class_dex.len() > 0 {
+        Ok(class_dex)
+    } else {
+        bail!("could not find classes.dex")
+    }
+}
+
 pub fn get_content_by_file(apk_path: String, target_file: String) -> Result<String, Error> {
     let android_resources_content = abxml::STR_ARSC.to_owned();
 
@@ -73,7 +99,7 @@ fn parse_xml<'a>(content: &[u8], resources: &'a Resources<'a>) -> Result<String,
 
 #[cfg(test)]
 mod tests {
-    use crate::get_content_by_file;
+    use crate::{get_content_by_file, get_class_dex};
 
     #[test]
     fn test_parse_zip_file() {
@@ -81,6 +107,14 @@ mod tests {
                                          String::from("AndroidManifest.xml"));
         if let Ok(str) = result {
             assert_eq!(true, str.contains("com.phodal.myapplication"));
+        }
+    }
+
+    #[test]
+    fn test_get_classes_dex() {
+        let result = get_class_dex(String::from("../_fixtures/apk/app-release-unsigned.apk"), );
+        if let Ok(bytes) = result {
+            assert_eq!(true, bytes.len() > 0);
         }
     }
 }
