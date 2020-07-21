@@ -13,23 +13,37 @@ fn main() {
         .long("papk")
         .takes_value(true);
 
+    let pclass_opt = Arg::with_name("pclass")
+        .long("pclass")
+        .takes_value(true);
 
-    let app = app.arg(papk_opt);
+    let app = app.arg(papk_opt)
+        .arg(pclass_opt);
+
     let matches = app.get_matches();
 
-    let papk = matches.value_of("papk");
-    match papk {
+    match matches.value_of("papk") {
         None => {}
         Some(str) => {
-            cmd_papk(String::from(str))
+            cmd_papk(String::from(str));
         }
     }
-
-    parse_class(b"");
+    match matches.value_of("pclass") {
+        None => {}
+        Some(str) => {
+            p_class(String::from(str));
+        }
+    }
 }
 
-pub fn p_class() {
-    parse_class(b"");
+pub fn p_class(str: String) {
+    let result = get_content_by_file(str, String::from(".class"));
+    match result {
+        Ok(str) => {
+
+        },
+        Err(_) => {},
+    }
 }
 
 pub fn cmd_papk(str: String) {
