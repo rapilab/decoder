@@ -8,8 +8,6 @@ pub fn parse_class(input: &[u8]) -> nom::IResult<&[u8], ClassFile> {
 #[cfg(test)]
 mod tests {
     use crate::parse_class;
-    use nom::error::ErrorKind;
-    use pclass_parser::classfile::ClassFile;
     use std::fs;
     use std::path::Path;
 

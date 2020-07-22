@@ -19,11 +19,6 @@ pub fn cmd_unpack(str: String) -> Result<(), failure::Error> {
 
 #[cfg(test)]
 mod tests {
-    use dex::class::Class;
-    use dex::Dex;
-    use failure::Error;
-    use memmap::Mmap;
-
     use crate::cmd::cmd_unpack::cmd_unpack;
 
     #[test]

@@ -47,8 +47,6 @@ pub fn cmd_pclass(str: String) -> Result<Dex<Mmap>, failure::Error> {
 #[cfg(test)]
 mod tests {
     use crate::cmd::cmd_pclass::cmd_pclass;
-    use failure::Error;
-    use memmap::Mmap;
 
     #[test]
     fn test_parse_class_binary() {

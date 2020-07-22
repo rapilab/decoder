@@ -15,11 +15,6 @@ pub fn cmd_papk(str: String) {
 
 #[cfg(test)]
 mod tests {
-    use dex::class::Class;
-    use dex::Dex;
-    use failure::Error;
-    use memmap::Mmap;
-
     use crate::cmd_papk;
 
     #[test]

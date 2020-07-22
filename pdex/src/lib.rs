@@ -6,8 +6,8 @@ use dex::{Dex, DexReader};
 use memmap::Mmap;
 
 pub fn parse_dex_from_file(file: &PathBuf) -> Option<Dex<Mmap>> {
-    let dex = DexReader::from_file(file);
-    match dex {
+    let result = DexReader::from_file(file);
+    match result {
         Ok(data) => Some(data),
         Err(_) => None,
     }
