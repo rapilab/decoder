@@ -1,9 +1,8 @@
 extern crate dex;
 
-use std::io;
-use std::path::{Path, PathBuf};
+use std::path::{PathBuf};
 
-use dex::{Dex, DexReader, Error};
+use dex::{Dex, DexReader};
 use memmap::Mmap;
 
 pub fn parse_dex_from_file(file: &PathBuf) -> Option<Dex<Mmap>> {
@@ -16,9 +15,11 @@ pub fn parse_dex_from_file(file: &PathBuf) -> Option<Dex<Mmap>> {
 
 #[cfg(test)]
 mod tests {
-    use crate::parse_dex_from_file;
-    use dex::class::Class;
     use std::path::{Path, PathBuf};
+
+    use dex::class::Class;
+
+    use crate::parse_dex_from_file;
 
     #[test]
     fn test_parse_c_binary() {

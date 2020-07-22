@@ -2,13 +2,12 @@ extern crate abxml;
 extern crate zip;
 #[macro_use]
 extern crate failure;
-#[macro_use]
 extern crate log;
 
 use abxml::encoder::Xml;
 use abxml::visitor::{Executor, ModelVisitor, Resources, XmlVisitor};
 use failure::{bail, Error, ResultExt};
-use std::io::{BufReader, Cursor, Read};
+use std::io::{Cursor, Read};
 
 #[derive(Debug, Clone)]
 pub enum ApkType {
@@ -24,9 +23,9 @@ pub fn get_classes_dex(apk_path: String) -> Result<Vec<u8>, Error> {
     archive
         .by_name("classes.dex")
         .unwrap()
-        .read_to_end(&mut class_dex);
+        .read_to_end(&mut class_dex)?;
 
-    if class_dex.len() > 0 {
+    if !class_dex.is_empty() {
         Ok(class_dex)
     } else {
         bail!("could not find classes.dex")
@@ -57,7 +56,7 @@ pub fn get_content_by_file(apk_path: String, target_file: String) -> Result<Stri
             {
                 let mut xml_content = Vec::new();
                 current_file.read_to_end(&mut xml_content)?;
-                let new_content = xml_content.clone();
+                let new_content = xml_content;
 
                 let resources = resources_visitor.get_resources();
                 let out =
