@@ -7,12 +7,10 @@ pub struct DirectClassFile {
 }
 
 impl DirectClassFile {
-    pub fn new(name: &Box<PathBuf>, bytes: &Box<Vec<u8>>) -> DirectClassFile {
+    pub fn new(name: Box<PathBuf>, bytes: Box<Vec<u8>>) -> DirectClassFile {
         DirectClassFile {
-            // name: Box::from(name),
-            // bytes
-            name: Box::new(Default::default()),
-            bytes: Box::new(vec![])
+            name,
+            bytes
         }
     }
 

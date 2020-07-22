@@ -10,13 +10,13 @@ pub struct ClassParserTask {
 impl ClassParserTask {
     pub fn new(name: PathBuf, bytes: Vec<u8>) -> ClassParserTask {
         ClassParserTask {
-            name: Box::from(name),
-            bytes: Box::from(bytes)
+            name: Box::new(name),
+            bytes: Box::new(bytes)
         }
     }
 
     pub fn call(&self) -> DirectClassFile {
-        let cf = DirectClassFile::new(&self.name, &self.bytes);
+        let cf = DirectClassFile::new(self.name.clone(), self.bytes.clone());
         cf.get_magic();
         cf
     }
