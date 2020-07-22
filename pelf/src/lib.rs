@@ -22,10 +22,6 @@ pub fn parse_buffer(path: &Path) -> error::Result<()> {
     Ok(())
 }
 
-fn main() {
-    println!("Hello, world!");
-}
-
 #[cfg(test)]
 mod tests {
     use crate::parse_buffer;

@@ -17,8 +17,6 @@ pub fn parse_dex_from_file(file: &PathBuf) -> Option<Dex<Mmap>> {
 mod tests {
     use std::path::{Path, PathBuf};
 
-    use dex::class::Class;
-
     use crate::parse_dex_from_file;
 
     #[test]
@@ -33,7 +31,7 @@ mod tests {
             None => {}
             Some(class) => {
                 let str = class.source_file().unwrap();
-                // assert_eq!("HelloWorld.java", &str.to_string())
+                assert_eq!("HelloWorld.java", &str.to_string())
             }
         }
     }
