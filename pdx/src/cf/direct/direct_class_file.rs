@@ -11,6 +11,10 @@ impl DirectClassFile {
         DirectClassFile { name, bytes }
     }
 
+    pub fn set_attribute_factory(&self) {
+
+    }
+
     pub fn parse_to_interfaces_if_necessary(&self) {
         if self.bytes.len() < 10 {}
     }
