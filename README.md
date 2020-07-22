@@ -85,8 +85,8 @@ Converter
 
 ### Class
 
-[smali/baksmali](https://github.com/JesusFreke/smali) is an assembler/disassembler for the dex format used by dalvik, Android's Java VM implementation. 
-
+ - [smali/baksmali](https://github.com/JesusFreke/smali) is an assembler/disassembler for the dex format used by dalvik, Android's Java VM implementation. 
+ - [https://github.com/ollide/intellij-java2smali](https://github.com/ollide/intellij-java2smali) Simple plugin for IntelliJ IDEA & Android Studio to easily compile Java & Kotlin files to smali.
 
 ## Documents
 
