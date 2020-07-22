@@ -22,37 +22,26 @@ use crate::highlight::highlight_out;
 mod highlight;
 
 fn main() {
-    let app = App::new("decoder").version("0.0.1");
-
     let papk_opt = Arg::with_name("papk").long("papk").takes_value(true);
-
     let pclass_opt = Arg::with_name("pclass").long("pclass").takes_value(true);
-
     let unpack_opt = Arg::with_name("unpack").long("unpack").takes_value(true);
 
-    let app = app.arg(papk_opt).arg(pclass_opt).arg(unpack_opt);
+    let app = App::new("decoder").version("0.0.1")
+        .arg(papk_opt)
+        .arg(pclass_opt)
+        .arg(unpack_opt);
 
     let matches = app.get_matches();
-
-    match matches.value_of("papk") {
-        None => {}
-        Some(str) => {
-            cmd_papk(String::from(str));
-        }
+    if let Some(str) = matches.value_of("papk") {
+        cmd_papk(String::from(str));
     }
 
-    match matches.value_of("pclass") {
-        None => {}
-        Some(str) => {
-            p_class(String::from(str));
-        }
+    if let Some(str) = matches.value_of("pclass") {
+        cmd_pclass(String::from(str));
     }
 
-    match matches.value_of("unpack_opt") {
-        None => {}
-        Some(str) => {
-            cmd_unpack(str);
-        }
+    if let Some(str) = matches.value_of("unpack_opt") {
+        cmd_unpack(str);
     }
 }
 
@@ -66,7 +55,7 @@ fn cmd_unpack(str: &str) -> Result<(), failure::Error> {
     Ok(())
 }
 
-pub fn p_class(str: String) -> Result<Dex<Mmap>, failure::Error> {
+pub fn cmd_pclass(str: String) -> Result<Dex<Mmap>, failure::Error> {
     let result = get_classes_dex(String::from(str));
     let dir = tempdir()?;
 
@@ -122,7 +111,7 @@ mod tests {
     use failure::Error;
     use memmap::Mmap;
 
-    use crate::{cmd_papk, p_class};
+    use crate::{cmd_papk, cmd_pclass};
 
     #[test]
     fn test_parse_apk_binary() {
@@ -131,7 +120,7 @@ mod tests {
 
     #[test]
     fn test_parse_class_binary() {
-        let mmap = p_class(String::from("_fixtures/apk/app-release-unsigned.apk"));
+        let mmap = cmd_pclass(String::from("_fixtures/apk/app-release-unsigned.apk"));
         if let Ok(dex) = mmap {
             for cr in dex.classes() {
                 if let Ok(class) = cr {
