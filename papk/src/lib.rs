@@ -5,19 +5,15 @@ extern crate failure;
 #[macro_use]
 extern crate log;
 
-use std::io::{BufReader, Read, Cursor};
-use abxml::visitor::{ModelVisitor, Executor, XmlVisitor, Resources};
 use abxml::encoder::Xml;
+use abxml::visitor::{Executor, ModelVisitor, Resources, XmlVisitor};
 use failure::{bail, Error, ResultExt};
+use std::io::{BufReader, Cursor, Read};
 
 #[derive(Debug, Clone)]
 pub enum ApkType {
-    Xml {
-        content: String,
-    },
-    Class {
-        content: Vec<u8>
-    }
+    Xml { content: String },
+    Class { content: Vec<u8> },
 }
 
 pub fn get_classes_dex(apk_path: String) -> Result<Vec<u8>, Error> {
@@ -25,7 +21,8 @@ pub fn get_classes_dex(apk_path: String) -> Result<Vec<u8>, Error> {
 
     let file = std::fs::File::open(&apk_path)?;
     let mut archive = zip::ZipArchive::new(file).unwrap();
-    archive.by_name("classes.dex")
+    archive
+        .by_name("classes.dex")
         .unwrap()
         .read_to_end(&mut class_dex);
 
@@ -46,7 +43,8 @@ pub fn get_content_by_file(apk_path: String, target_file: String) -> Result<Stri
     archive
         .by_name("resources.arsc")
         .unwrap()
-        .read_to_end(&mut resources_content).unwrap();
+        .read_to_end(&mut resources_content)
+        .unwrap();
 
     let mut resources_visitor = ModelVisitor::default();
     Executor::arsc(&resources_content, &mut resources_visitor)?;
@@ -99,12 +97,14 @@ fn parse_xml<'a>(content: &[u8], resources: &'a Resources<'a>) -> Result<String,
 
 #[cfg(test)]
 mod tests {
-    use crate::{get_content_by_file, get_classes_dex};
+    use crate::{get_classes_dex, get_content_by_file};
 
     #[test]
     fn test_parse_zip_file() {
-        let result = get_content_by_file(String::from("../_fixtures/apk/app-release-unsigned.apk"),
-                                         String::from("AndroidManifest.xml"));
+        let result = get_content_by_file(
+            String::from("../_fixtures/apk/app-release-unsigned.apk"),
+            String::from("AndroidManifest.xml"),
+        );
         if let Ok(str) = result {
             assert_eq!(true, str.contains("com.phodal.myapplication"));
         }
@@ -112,7 +112,7 @@ mod tests {
 
     #[test]
     fn test_get_classes_dex() {
-        let result = get_classes_dex(String::from("../_fixtures/apk/app-release-unsigned.apk"), );
+        let result = get_classes_dex(String::from("../_fixtures/apk/app-release-unsigned.apk"));
         if let Ok(bytes) = result {
             assert_eq!(true, bytes.len() > 0);
         }

@@ -1,3 +1,1 @@
-pub fn parse_oat() {
-
-}
+pub fn parse_oat() {}

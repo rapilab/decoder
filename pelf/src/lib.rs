@@ -1,6 +1,6 @@
-use std::path::Path;
+use goblin::{error, Object};
 use std::fs;
-use goblin::{Object, error};
+use std::path::Path;
 
 pub fn parse_buffer(path: &Path) -> error::Result<()> {
     let buffer = fs::read(path)?;
@@ -17,7 +17,7 @@ pub fn parse_buffer(path: &Path) -> error::Result<()> {
         Object::Archive(archive) => {
             println!("archive: {:#?}", &archive);
         }
-        Object::Unknown(magic) => { println!("unknown magic: {:#x}", magic) }
+        Object::Unknown(magic) => println!("unknown magic: {:#x}", magic),
     }
     Ok(())
 }
@@ -26,11 +26,10 @@ fn main() {
     println!("Hello, world!");
 }
 
-
 #[cfg(test)]
 mod tests {
-    use std::path::Path;
     use crate::parse_buffer;
+    use std::path::Path;
 
     #[test]
     fn test_parse_c_binary() {

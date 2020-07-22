@@ -9,12 +9,8 @@ use memmap::Mmap;
 pub fn parse_dex_from_file(file: &PathBuf) -> Option<Dex<Mmap>> {
     let dex = DexReader::from_file(file);
     match dex {
-        Ok(data) => {
-            Some(data)
-        }
-        Err(_) => {
-            None
-        }
+        Ok(data) => Some(data),
+        Err(_) => None,
     }
 }
 

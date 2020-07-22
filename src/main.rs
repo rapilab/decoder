@@ -22,24 +22,15 @@ use crate::highlight::highlight_out;
 mod highlight;
 
 fn main() {
-    let app = App::new("decoder")
-        .version("0.0.1");
+    let app = App::new("decoder").version("0.0.1");
 
-    let papk_opt = Arg::with_name("papk")
-        .long("papk")
-        .takes_value(true);
+    let papk_opt = Arg::with_name("papk").long("papk").takes_value(true);
 
-    let pclass_opt = Arg::with_name("pclass")
-        .long("pclass")
-        .takes_value(true);
+    let pclass_opt = Arg::with_name("pclass").long("pclass").takes_value(true);
 
-    let unpack_opt = Arg::with_name("unpack")
-        .long("unpack")
-        .takes_value(true);
+    let unpack_opt = Arg::with_name("unpack").long("unpack").takes_value(true);
 
-    let app = app.arg(papk_opt)
-        .arg(pclass_opt)
-        .arg(unpack_opt);
+    let app = app.arg(papk_opt).arg(pclass_opt).arg(unpack_opt);
 
     let matches = app.get_matches();
 
@@ -93,9 +84,7 @@ pub fn p_class(str: String) -> Result<Dex<Mmap>, failure::Error> {
         dir.close()?;
 
         return match option {
-            None => {
-                bail!("could not parse dex")
-            }
+            None => bail!("could not parse dex"),
             Some(mmap) => {
                 for cr in mmap.classes() {
                     if let Ok(class) = cr {
