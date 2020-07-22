@@ -16,6 +16,8 @@ decoder --papk _fixtures/apk/app-release-unsigned.apk
 
 ## Library
 
+[Apktool](https://github.com/iBotPeaches/Apktool) is  A tool for reverse engineering Android apk files.
+
 ### Dalvik
 
 Documents:
@@ -79,6 +81,13 @@ Converter
  
  - [Android 手把手分析resources.arsc](https://juejin.im/post/5d4e60c15188255d2a78b86d)
 
+![Resources.arsc](docs/android/resource-arsc-spec.png)
+
+### Class
+
+[smali/baksmali](https://github.com/JesusFreke/smali) is an assembler/disassembler for the dex format used by dalvik, Android's Java VM implementation. 
+
+
 ## Documents
 
  - linux -> [Smallest x86 ELF Hello World](http://timelessname.com/elfbin/)
@@ -95,6 +104,24 @@ Video:
 ## Specification
 
  - [Dalvik Executable format](https://source.android.com/devices/tech/dalvik/dex-format)
+
+## Logs
+
+```
+apktool d _fixtures/apk/app-release-unsigned.apk
+
+I: Using Apktool 2.4.1 on app-release-unsigned.apk
+I: Loading resource table...
+I: Decoding AndroidManifest.xml with resources...
+I: Loading resource table from file: /Users/fdhuang/Library/apktool/framework/1.apk
+I: Regular manifest package...
+I: Decoding file-resources...
+I: Decoding values */* XMLs...
+I: Baksmaling classes.dex...
+I: Copying assets and libs...
+I: Copying unknown files...
+I: Copying original files...
+```
 
 License
 ---
