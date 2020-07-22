@@ -32,20 +32,6 @@ pub fn get_classes_dex(apk_path: String) -> Result<Vec<u8>, Error> {
     }
 }
 
-pub fn get_resources(apk_path: String) -> Result<String, Error> {
-    let android_resources_content = abxml::STR_ARSC.to_owned();
-
-    let file = std::fs::File::open(&apk_path).unwrap();
-    let mut archive = zip::ZipArchive::new(file).unwrap();
-
-    let mut resources_content = Vec::new();
-    archive
-        .by_name("resources.arsc")
-        .unwrap()
-        .read_to_end(&mut resources_content)
-        .unwrap();
-}
-
 pub fn get_content_by_file(apk_path: String, target_file: String) -> Result<String, Error> {
     let android_resources_content = abxml::STR_ARSC.to_owned();
 
