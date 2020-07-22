@@ -8,10 +8,7 @@ pub struct DirectClassFile {
 
 impl DirectClassFile {
     pub fn new(name: Box<PathBuf>, bytes: Box<Vec<u8>>) -> DirectClassFile {
-        DirectClassFile {
-            name,
-            bytes
-        }
+        DirectClassFile { name, bytes }
     }
 
     pub fn parse_to_interfaces_if_necessary(&self) {

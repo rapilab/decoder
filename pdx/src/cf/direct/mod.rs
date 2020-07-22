@@ -1,13 +1,13 @@
 use std::path::PathBuf;
 
-use crate::cf::direct::direct_class_file_consumer::DirectClassFileConsumer;
 use crate::cf::direct::class_parser_task::ClassParserTask;
+use crate::cf::direct::direct_class_file_consumer::DirectClassFileConsumer;
 
-pub mod direct_class_file;
 pub mod class_parser_task;
+pub mod class_path_opener;
+pub mod direct_class_file;
 pub mod direct_class_file_consumer;
 pub mod file_bytes_consumer;
-pub mod class_path_opener;
 
 pub fn check_class_name(name: PathBuf) {}
 

@@ -1,15 +1,11 @@
-use std::path::PathBuf;
 use crate::cf::direct::process_file_bytes;
+use std::path::PathBuf;
 
-pub struct FileBytesConsumer {
-
-}
+pub struct FileBytesConsumer {}
 
 impl FileBytesConsumer {
     pub fn new() -> FileBytesConsumer {
-        FileBytesConsumer {
-
-        }
+        FileBytesConsumer {}
     }
 
     pub fn process_file_bytes(&self, name: PathBuf, bytes: Vec<u8>) {

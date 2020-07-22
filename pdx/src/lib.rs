@@ -9,11 +9,7 @@ pub fn create_dex_file() {
     process_one();
 }
 
-pub fn process_one() {
-
-}
+pub fn process_one() {}
 
 #[cfg(test)]
-mod tests {
-
-}
+mod tests {}

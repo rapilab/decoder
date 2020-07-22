@@ -1,11 +1,11 @@
-use std::fs;
-use papk::get_classes_dex;
-use memmap::Mmap;
 use dex::Dex;
-use tempfile::tempdir;
-use std::fs::File;
+use memmap::Mmap;
+use papk::get_classes_dex;
 use pdex::parse_dex_from_file;
+use std::fs;
+use std::fs::File;
 use std::io::Write;
+use tempfile::tempdir;
 
 pub fn cmd_pclass(str: String) -> Result<Dex<Mmap>, failure::Error> {
     let result = get_classes_dex(String::from(str));

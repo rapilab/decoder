@@ -1,3 +1,1 @@
-pub struct DexOption {
-
-}
+pub struct DexOption {}

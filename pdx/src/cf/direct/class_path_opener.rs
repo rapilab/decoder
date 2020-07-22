@@ -1,28 +1,24 @@
-use std::fs::File;
-use std::path::PathBuf;
 use crate::cf::direct::file_bytes_consumer::FileBytesConsumer;
 use std::fs;
+use std::fs::File;
+use std::path::PathBuf;
 
 pub struct ClassPathOpener {
     pathname: String,
-    pub consumer: FileBytesConsumer
+    pub consumer: FileBytesConsumer,
 }
 
 impl ClassPathOpener {
     pub fn new(pathname: String) -> ClassPathOpener {
         ClassPathOpener {
             pathname,
-            consumer: FileBytesConsumer::new()
+            consumer: FileBytesConsumer::new(),
         }
     }
 
-    pub fn process_directory(&self, path: PathBuf) {
+    pub fn process_directory(&self, path: PathBuf) {}
 
-    }
-
-    pub fn process_archive(&self, path: PathBuf) {
-
-    }
+    pub fn process_archive(&self, path: PathBuf) {}
 
     pub fn process_one(&self, path: PathBuf) {
         if path.is_dir() {
