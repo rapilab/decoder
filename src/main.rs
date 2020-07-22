@@ -32,6 +32,7 @@ fn main() {
         .arg(unpack_opt);
 
     let matches = app.get_matches();
+
     if let Some(str) = matches.value_of("papk") {
         cmd_papk(String::from(str));
     }
@@ -41,16 +42,22 @@ fn main() {
     }
 
     if let Some(str) = matches.value_of("unpack_opt") {
-        cmd_unpack(str);
+        cmd_unpack(String::from(str));
     }
 }
 
-fn cmd_unpack(str: &str) -> Result<(), failure::Error> {
-    let path = Path::new(str);
+fn cmd_unpack(str: String) -> Result<(), failure::Error> {
+    let path = Path::new(&str);
 
     let mut apk = Apk::from_path(&path)?;
     let output = Path::new("apk_output/");
-    apk.export(output, true)?;
+    let result = apk.export(output, true);
+    match result {
+        Ok(_) => {},
+        Err(err) => {
+            println!("{:?}", err);
+        },
+    }
 
     Ok(())
 }
@@ -111,11 +118,16 @@ mod tests {
     use failure::Error;
     use memmap::Mmap;
 
-    use crate::{cmd_papk, cmd_pclass};
+    use crate::{cmd_papk, cmd_pclass, cmd_unpack};
 
     #[test]
     fn test_parse_apk_binary() {
         cmd_papk(String::from("_fixtures/apk/app-release-unsigned.apk"));
+    }
+
+    #[test]
+    fn test_unpack_apk_binary() {
+        cmd_unpack(String::from("_fixtures/apk/app-release-unsigned.apk"));
     }
 
     #[test]
