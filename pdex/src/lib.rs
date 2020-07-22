@@ -20,19 +20,21 @@ mod tests {
     use crate::parse_dex_from_file;
 
     #[test]
-    fn test_parse_c_binary() {
-        let string = String::from("../_fixtures/java/hello/classes.dex");
+    fn test_parse_apk_binary() {
+        let string = String::from("_fixtures/java/hello/classes.dex");
         let file = Path::new(&string);
         let mmap = parse_dex_from_file(&PathBuf::from(file));
         let result = mmap.unwrap().find_class_by_name("LHelloWorld;");
 
-        let option = result.unwrap();
-        match option {
-            None => {}
-            Some(class) => {
-                let str = class.source_file().unwrap();
-                assert_eq!("HelloWorld.java", &str.to_string())
-            }
+        let class = result.expect("Result failed").expect("Class failed");
+
+        let str = class.source_file().unwrap();
+        assert_eq!("HelloWorld.java", &str.to_string());
+        let methods = class.methods();
+        let mut count = 0;
+        for method in methods {
+            count = count + 1;
         }
+        assert_eq!(2, count);
     }
 }
