@@ -1,29 +1,18 @@
+use std::path::PathBuf;
+use crate::cf::direct::process_file_bytes;
+
 pub struct FileBytesConsumer {
 
 }
 
 impl FileBytesConsumer {
-    pub fn new() {
+    pub fn new() -> FileBytesConsumer {
+        FileBytesConsumer {
 
-    }
-
-    pub fn check_class_name(&self, name: String) {
-
-    }
-
-    pub fn process_class(&self, name: String) {
-        self.check_class_name(name);
-    }
-
-    pub fn process_file_bytes(&self, name: String) -> bool {
-        let is_class = name.ends_with(".class");
-        let is_classes_dex = name.eq("classes.dex");
-
-        if !isClass && !isClassesDex {
-            return false;
         }
+    }
 
-        self.process_class(name);
-        return true;
+    pub fn process_file_bytes(&self, name: PathBuf, bytes: Vec<u8>) {
+        process_file_bytes(name, bytes);
     }
 }

@@ -1,14 +1,18 @@
 use std::fs::File;
 use std::path::PathBuf;
+use crate::cf::direct::file_bytes_consumer::FileBytesConsumer;
+use std::fs;
 
 pub struct ClassPathOpener {
-    pathname: String
+    pathname: String,
+    pub consumer: FileBytesConsumer
 }
 
 impl ClassPathOpener {
     pub fn new(pathname: String) -> ClassPathOpener {
         ClassPathOpener {
-            pathname
+            pathname,
+            consumer: FileBytesConsumer::new()
         }
     }
 
@@ -29,6 +33,7 @@ impl ClassPathOpener {
             return self.process_archive(path);
         }
 
-
+        let data = fs::read(path.clone()).expect("Unable to read file");
+        self.consumer.process_file_bytes(path, data);
     }
 }
