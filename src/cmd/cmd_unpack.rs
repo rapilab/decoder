@@ -1,5 +1,5 @@
-use std::path::Path;
 use abxml::apk::Apk;
+use std::path::Path;
 
 pub fn cmd_unpack(str: String) -> Result<(), failure::Error> {
     let path = Path::new(&str);
@@ -8,10 +8,10 @@ pub fn cmd_unpack(str: String) -> Result<(), failure::Error> {
     let output = Path::new("apk_output/");
     let result = apk.export(output, true);
     match result {
-        Ok(_) => {},
+        Ok(_) => {}
         Err(err) => {
             println!("{:?}", err);
-        },
+        }
     }
 
     Ok(())

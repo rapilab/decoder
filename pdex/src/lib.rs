@@ -1,6 +1,6 @@
 extern crate dex;
 
-use std::path::{PathBuf};
+use std::path::PathBuf;
 
 use dex::{Dex, DexReader};
 use memmap::Mmap;

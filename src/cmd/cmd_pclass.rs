@@ -1,3 +1,12 @@
+use std::fs;
+use papk::get_classes_dex;
+use memmap::Mmap;
+use dex::Dex;
+use tempfile::tempdir;
+use std::fs::File;
+use pdex::parse_dex_from_file;
+use std::io::Write;
+
 pub fn cmd_pclass(str: String) -> Result<Dex<Mmap>, failure::Error> {
     let result = get_classes_dex(String::from(str));
     let dir = tempdir()?;
@@ -35,12 +44,11 @@ pub fn cmd_pclass(str: String) -> Result<Dex<Mmap>, failure::Error> {
     bail!("could not find classes.dex")
 }
 
-
 #[cfg(test)]
 mod tests {
+    use crate::cmd::cmd_pclass::cmd_pclass;
     use failure::Error;
     use memmap::Mmap;
-    use crate::cmd::cmd_pclass::cmd_pclass;
 
     #[test]
     fn test_parse_class_binary() {
@@ -54,4 +62,3 @@ mod tests {
         }
     }
 }
-

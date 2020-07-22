@@ -1,5 +1,5 @@
-use papk::get_content_by_file;
 use crate::highlight::highlight_out;
+use papk::get_content_by_file;
 
 pub fn cmd_papk(str: String) {
     let result = get_content_by_file(str, String::from("AndroidManifest.xml"));
@@ -13,7 +13,6 @@ pub fn cmd_papk(str: String) {
     }
 }
 
-
 #[cfg(test)]
 mod tests {
     use dex::class::Class;
@@ -21,7 +20,7 @@ mod tests {
     use failure::Error;
     use memmap::Mmap;
 
-    use crate::{cmd_papk};
+    use crate::cmd_papk;
 
     #[test]
     fn test_parse_apk_binary() {
