@@ -11,11 +11,11 @@ pub mod class_path_opener;
 
 pub fn check_class_name(name: PathBuf) {}
 
-pub fn process_class(name: PathBuf) {
-    check_class_name(name);
+pub fn process_class(name: PathBuf, bytes: Vec<u8>) {
+    check_class_name(name.clone());
 
-    let consumer = DirectClassFileConsumer::new();
-    let parser_task = ClassParserTask::new();
+    let consumer = DirectClassFileConsumer::new(name.clone(), bytes.clone());
+    let parser_task = ClassParserTask::new(name, bytes);
     let class_file = parser_task.call();
     consumer.call(class_file);
 }
@@ -28,6 +28,6 @@ pub fn process_file_bytes(name: PathBuf, bytes: Vec<u8>) -> bool {
         return false;
     }
 
-    process_class(name);
+    process_class(name, bytes);
     return true;
 }

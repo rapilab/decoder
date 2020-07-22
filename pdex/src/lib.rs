@@ -21,7 +21,7 @@ mod tests {
 
     #[test]
     fn test_parse_apk_binary() {
-        let string = String::from("_fixtures/java/hello/classes.dex");
+        let string = String::from("../_fixtures/java/hello/classes.dex");
         let file = Path::new(&string);
         let mmap = parse_dex_from_file(&PathBuf::from(file));
         let result = mmap.unwrap().find_class_by_name("LHelloWorld;");
