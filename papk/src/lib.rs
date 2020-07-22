@@ -20,7 +20,7 @@ pub enum ApkType {
     }
 }
 
-pub fn get_class_dex(apk_path: String) -> Result<Vec<u8>, Error> {
+pub fn get_classes_dex(apk_path: String) -> Result<Vec<u8>, Error> {
     let mut class_dex: Vec<u8> = vec![];
 
     let file = std::fs::File::open(&apk_path)?;
@@ -39,14 +39,14 @@ pub fn get_class_dex(apk_path: String) -> Result<Vec<u8>, Error> {
 pub fn get_content_by_file(apk_path: String, target_file: String) -> Result<String, Error> {
     let android_resources_content = abxml::STR_ARSC.to_owned();
 
-    let file = std::fs::File::open(&apk_path)?;
+    let file = std::fs::File::open(&apk_path).unwrap();
     let mut archive = zip::ZipArchive::new(file).unwrap();
 
     let mut resources_content = Vec::new();
     archive
         .by_name("resources.arsc")
         .unwrap()
-        .read_to_end(&mut resources_content)?;
+        .read_to_end(&mut resources_content).unwrap();
 
     let mut resources_visitor = ModelVisitor::default();
     Executor::arsc(&resources_content, &mut resources_visitor)?;
@@ -99,7 +99,7 @@ fn parse_xml<'a>(content: &[u8], resources: &'a Resources<'a>) -> Result<String,
 
 #[cfg(test)]
 mod tests {
-    use crate::{get_content_by_file, get_class_dex};
+    use crate::{get_content_by_file, get_classes_dex};
 
     #[test]
     fn test_parse_zip_file() {
@@ -112,7 +112,7 @@ mod tests {
 
     #[test]
     fn test_get_classes_dex() {
-        let result = get_class_dex(String::from("../_fixtures/apk/app-release-unsigned.apk"), );
+        let result = get_classes_dex(String::from("../_fixtures/apk/app-release-unsigned.apk"), );
         if let Ok(bytes) = result {
             assert_eq!(true, bytes.len() > 0);
         }

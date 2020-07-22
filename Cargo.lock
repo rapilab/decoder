@@ -191,6 +191,7 @@ dependencies = [
 name = "decoder"
 version = "0.1.0"
 dependencies = [
+ "abxml 0.8.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "clap 3.0.0-beta.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "dex 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "failure 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
