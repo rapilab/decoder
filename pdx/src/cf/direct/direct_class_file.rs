@@ -2,12 +2,12 @@ use std::path::PathBuf;
 
 #[derive(Debug, Clone)]
 pub struct DirectClassFile {
-    name: Box<PathBuf>,
-    bytes: Box<Vec<u8>>,
+    name: PathBuf,
+    bytes: Vec<u8>,
 }
 
 impl DirectClassFile {
-    pub fn new(name: Box<PathBuf>, bytes: Box<Vec<u8>>) -> DirectClassFile {
+    pub fn new(name: PathBuf, bytes: Vec<u8>) -> DirectClassFile {
         DirectClassFile { name, bytes }
     }
 
