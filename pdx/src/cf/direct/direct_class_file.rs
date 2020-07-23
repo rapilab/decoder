@@ -35,6 +35,7 @@ impl DirectClassFile {
     pub fn parse_to_interfaces_if_necessary(&self) {
         self.parse0();
     }
+
     pub fn get_magic(&self) -> u8 {
         self.parse_to_interfaces_if_necessary();
         self.bytes[0]

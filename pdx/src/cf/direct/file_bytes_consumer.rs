@@ -1,5 +1,5 @@
-use crate::cf::direct::process_file_bytes;
 use std::path::PathBuf;
+use crate::process_file_bytes;
 
 pub struct FileBytesConsumer {}
 

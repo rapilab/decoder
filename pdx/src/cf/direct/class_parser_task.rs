@@ -17,7 +17,7 @@ impl ClassParserTask {
 
     pub fn call(&self) -> DirectClassFile {
         let cf = DirectClassFile::new(self.name.clone(), self.bytes.clone());
-        cf.setAttributeFactory();
+        cf.set_attribute_factory();
         cf.get_magic();
         cf
     }
