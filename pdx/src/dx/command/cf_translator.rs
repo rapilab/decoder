@@ -1,4 +1,4 @@
-use crate::cf::direct::direct_class_file::DirectClassFile;
+use crate::dx::dex::cf::direct::direct_class_file::DirectClassFile;
 
 pub struct CfTranslator {}
 

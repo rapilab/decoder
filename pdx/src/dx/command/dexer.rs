@@ -1,10 +1,10 @@
 use std::path::PathBuf;
 
+use crate::dx::command::cf_translator::CfTranslator;
 use crate::dx::command::class_parser_task::ClassParserTask;
 use crate::dx::command::direct_class_file_consumer::DirectClassFileConsumer;
+use crate::dx::dex::cf::direct::direct_class_file::DirectClassFile;
 use crate::dx::file::dex_file::DexFile;
-use crate::cf::direct::direct_class_file::DirectClassFile;
-use crate::dx::command::cf_translator::CfTranslator;
 
 pub fn create_dex_file() {
     let output_dex = DexFile::new();

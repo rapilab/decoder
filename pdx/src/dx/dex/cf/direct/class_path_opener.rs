@@ -1,7 +1,8 @@
-use crate::cf::direct::file_bytes_consumer::FileBytesConsumer;
 use std::fs;
 use std::fs::File;
 use std::path::PathBuf;
+
+use crate::dx::dex::cf::direct::file_bytes_consumer::FileBytesConsumer;
 
 pub struct ClassPathOpener {
     pathname: String,

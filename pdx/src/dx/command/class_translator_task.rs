@@ -1,6 +1,6 @@
 use std::path::PathBuf;
-use crate::cf::direct::direct_class_file::DirectClassFile;
 use crate::dx::command::dexer::translate_class;
+use crate::dx::dex::cf::direct::direct_class_file::DirectClassFile;
 
 pub struct ClassTranslatorTask {
     name: PathBuf,
