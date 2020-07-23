@@ -1,5 +1,7 @@
-use crate::cf::direct::direct_class_file::DirectClassFile;
 use std::path::PathBuf;
+
+use crate::cf::direct::direct_class_file::DirectClassFile;
+use crate::rotate_dex_file;
 
 pub struct DirectClassFileConsumer {
     name: Box<PathBuf>,
@@ -14,5 +16,7 @@ impl DirectClassFileConsumer {
         }
     }
 
-    pub fn call(&self, class: DirectClassFile) {}
+    pub fn call(&self, class: DirectClassFile) {
+        rotate_dex_file();
+    }
 }
