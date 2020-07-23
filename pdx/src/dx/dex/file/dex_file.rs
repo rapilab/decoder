@@ -1,4 +1,4 @@
-use crate::dx::file::header_section::HeaderSection;
+use crate::dx::dex::file::header_section::HeaderSection;
 
 pub struct DexFile {}
 
