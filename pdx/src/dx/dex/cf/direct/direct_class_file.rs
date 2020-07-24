@@ -1,15 +1,28 @@
 use std::path::PathBuf;
+
+use crate::dx::dex::rop::cst::cst_type::CstType;
 use crate::dx::dex::rop::cst::std_constant_pool::StdConstantPool;
+use crate::dx::dex::rop::iface::type_list::TypeList;
+use crate::dx::dex::rop::iface::field_list::FieldList;
+use crate::dx::dex::rop::iface::method_list::MethodList;
+use crate::dx::dex::rop::iface::std_attribute_list::StdAttributeList;
 
 #[derive(Debug, Clone)]
 pub struct DirectClassFile {
     name: PathBuf,
     bytes: Vec<u8>,
+
     constant_pool: StdConstantPool,
     minor_version: i32,
     major_version: i32,
     access_flags: i32,
     magic: i32,
+    this_class: CstType,
+    super_class: CstType,
+    interfaces: TypeList,
+    fields: FieldList,
+    methods: MethodList,
+    attributes: StdAttributeList
 }
 
 impl DirectClassFile {
@@ -21,7 +34,13 @@ impl DirectClassFile {
             minor_version: 0,
             major_version: 0,
             access_flags: 0,
-            magic: 0
+            magic: 0,
+            this_class: CstType::new(),
+            super_class: CstType::new(),
+            interfaces: TypeList {},
+            fields: FieldList {},
+            methods: MethodList {},
+            attributes: StdAttributeList {}
         }
     }
 
@@ -50,5 +69,9 @@ impl DirectClassFile {
     pub fn get_magic(&self) -> u8 {
         self.parse_to_interfaces_if_necessary();
         self.bytes[0]
+    }
+
+    pub fn get_source_file(&self) {
+
     }
 }

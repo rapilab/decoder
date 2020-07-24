@@ -1,3 +1,4 @@
+pub mod cst_type;
 pub mod constant;
 pub mod std_constant_pool;
 pub mod type_constant;
