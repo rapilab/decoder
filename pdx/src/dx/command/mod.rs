@@ -1,5 +1,4 @@
 pub mod cf_translator;
-pub mod class_def_item;
 pub mod class_def_item_consumer;
 pub mod dexer;
 pub mod direct_class_file_consumer;

@@ -1,5 +1,5 @@
 use crate::dx::dex::cf::direct::direct_class_file::DirectClassFile;
-use crate::dx::command::class_def_item::ClassDefItem;
+use crate::dx::dex::file::class_def_item::ClassDefItem;
 
 pub struct CfTranslator {}
 
