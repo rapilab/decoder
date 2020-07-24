@@ -5,6 +5,7 @@ use crate::dx::command::class_parser_task::ClassParserTask;
 use crate::dx::command::direct_class_file_consumer::DirectClassFileConsumer;
 use crate::dx::dex::cf::direct::direct_class_file::DirectClassFile;
 use crate::dx::dex::file::dex_file::DexFile;
+use crate::dx::dex::file::class_def_item::ClassDefItem;
 
 pub fn create_dex_file() {
     let output_dex = DexFile::new();
@@ -40,6 +41,6 @@ pub fn process_file_bytes(name: PathBuf, bytes: Vec<u8>) -> bool {
     return true;
 }
 
-pub fn translate_class(byte: Vec<u8>, cf: DirectClassFile) {
-    CfTranslator::translate(byte, cf);
+pub fn translate_class(byte: Vec<u8>, cf: DirectClassFile) -> ClassDefItem {
+    CfTranslator::translate(byte, cf)
 }

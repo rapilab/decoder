@@ -24,7 +24,7 @@ impl CfTranslator {
         out
     }
 
-    pub fn translate(bytes: Vec<u8>, cf: DirectClassFile) {
-        CfTranslator::translate0(bytes, cf);
+    pub fn translate(bytes: Vec<u8>, cf: DirectClassFile) -> ClassDefItem {
+        CfTranslator::translate0(bytes, cf)
     }
 }
