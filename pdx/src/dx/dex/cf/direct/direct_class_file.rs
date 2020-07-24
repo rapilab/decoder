@@ -74,4 +74,8 @@ impl DirectClassFile {
     pub fn get_source_file(&self) {
 
     }
+
+    pub fn get_constant_pool(&self) -> StdConstantPool {
+        self.constant_pool.clone()
+    }
 }

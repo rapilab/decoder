@@ -14,6 +14,7 @@ impl CfTranslator {
     pub fn translate0(bytes: Vec<u8>, cf: DirectClassFile) {
         CfTranslator::process_fields();
         CfTranslator::process_methods();
+
     }
 
     pub fn translate(bytes: Vec<u8>, cf: DirectClassFile) {
