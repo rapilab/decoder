@@ -33,5 +33,6 @@ members = [
     "poat",
     "pclass",
     "papk",
-    "pdx"
+    "pdx",
+    "pd8"
 ]
