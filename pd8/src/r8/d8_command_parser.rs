@@ -10,9 +10,10 @@ impl D8CommandParser {
         D8CommandParser{}
     }
 
-    pub fn parse(&self) -> D8Builder {
+    pub fn parse(&self, options: Vec<String>) -> D8Builder {
         let mut builder = D8Command::builder();
         // do something in builder parser
+        builder.add_program_files(String::from(""));
         builder.set_intermediate(true);
         builder
     }

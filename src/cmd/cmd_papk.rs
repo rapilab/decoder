@@ -19,6 +19,6 @@ mod tests {
 
     #[test]
     fn test_main_parse_apk_binary() {
-        cmd_papk(String::from("_fixtures/apk/app-release-unsigned.apk"));
+        cmd_papk(String::from("../_fixtures/apk/app-release-unsigned.apk"));
     }
 }
