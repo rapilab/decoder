@@ -1,4 +1,3 @@
-use crate::r8::utils::android_app::AndroidApp;
 use crate::r8::graph::dex_application::DexApplication;
 
 #[derive(Clone)]

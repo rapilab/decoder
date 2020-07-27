@@ -1,5 +1,7 @@
 use crate::r8::graph::method_collection::MethodCollection;
+use crate::r8::graph::dex_encoded_method::DexEncodedMethod;
 
+#[derive(Debug, Clone)]
 pub struct DexProgramClass {
     this_type: String,
     origin_kind: String,
@@ -15,15 +17,18 @@ pub struct DexProgramClass {
     class_annotations: String,
     static_fields: String,
     instance_fields: String,
-    direct_methods: String,
-    virtual_methods: String,
+    direct_methods: Vec<DexEncodedMethod>,
+    virtual_methods: Vec<DexEncodedMethod>,
 
-    method_collection: MethodCollection
+    method_collection: Option<MethodCollection>
 }
 
 impl DexProgramClass {
-    pub fn new() -> DexProgramClass {
-        DexProgramClass {
+    pub fn new(
+        direct_methods: Vec<DexEncodedMethod>,
+        virtual_methods: Vec<DexEncodedMethod>
+    ) -> DexProgramClass {
+        let mut class = DexProgramClass {
             this_type: "".to_string(),
             origin_kind: "".to_string(),
             origin: "".to_string(),
@@ -38,13 +43,19 @@ impl DexProgramClass {
             class_annotations: "".to_string(),
             static_fields: "".to_string(),
             instance_fields: "".to_string(),
-            direct_methods: "".to_string(),
-            virtual_methods: "".to_string(),
-            method_collection: MethodCollection::new()
-        }
+            direct_methods: direct_methods.clone(),
+            virtual_methods: virtual_methods.clone(),
+            method_collection: None
+        };
+
+        let collection = MethodCollection::new(Box::from(class.clone()), direct_methods, virtual_methods);
+        class.method_collection = Option::from(collection);
+
+        class
     }
 
     pub fn get_class_initializer(&self) {
-        self.method_collection.get_class_initializer()
+        let collection = self.method_collection.as_ref().unwrap();
+        collection.get_class_initializer();
     }
 }
