@@ -25,7 +25,7 @@ impl IRConverter {
         match option {
             None => {},
             Some(method) => {
-                let init_method = ProgramMethod::new(clazz.clone(), classInitializer);
+                let init_method = ProgramMethod::new(clazz.clone(), method);
                 self.convert_method(init_method)
             },
         }
