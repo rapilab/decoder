@@ -40,12 +40,6 @@ impl AndroidApp {
         }
     }
 
-    pub fn classes(&self) -> Vec<DexProgramClass> {
-        let classes: Vec<DexProgramClass> = vec![];
-        classes
-    }
-
-
     fn is_file_by_type(path_buf: PathBuf, suffix: String) -> bool {
         // path_buf.as_path().ends_with(suffix)
         return true

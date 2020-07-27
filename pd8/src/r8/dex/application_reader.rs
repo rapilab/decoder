@@ -13,8 +13,10 @@ impl ApplicationReader {
         }
     }
 
-    pub fn read(&self) -> LazyLoadedDexApplication {
+    pub fn read(&self) -> DexApplication {
         let builder = DexApplication::builder();
-        builder.build()
+        builder.build();
+
+        DexApplication::new()
     }
 }
