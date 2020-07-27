@@ -1,3 +1,4 @@
+
 pub trait  ClassFileConsumer {
     fn accept(&self);
 }

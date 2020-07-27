@@ -1,3 +1,5 @@
+pub mod code;
+pub mod parameter_annotations_list;
 pub mod method_access_flags;
 pub mod method_collection;
 pub mod dex_method;
