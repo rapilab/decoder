@@ -599,6 +599,9 @@ dependencies = [
 [[package]]
 name = "pd8"
 version = "0.1.0"
+dependencies = [
+ "log 0.4.11 (registry+https://github.com/rust-lang/crates.io-index)",
+]
 
 [[package]]
 name = "pdex"
