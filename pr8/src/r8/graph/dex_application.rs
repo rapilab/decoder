@@ -1,5 +1,5 @@
-use crate::r8::graph::lazy_loaded_dex_application::LazyLoadedDexApplicationBuilder;
 use crate::r8::graph::dex_program_class::DexProgramClass;
+use crate::r8::graph::lazy_loaded_dex_application::LazyLoadedDexApplicationBuilder;
 
 #[derive(Clone, Debug)]
 pub struct DexApplication {}
@@ -22,15 +22,13 @@ impl DexApplication {
 
 #[derive(Clone, Debug)]
 pub struct DexApplicationBuilder {
-    pub app: DexApplication
+    pub app: DexApplication,
 }
 
 impl DexApplicationBuilder {
     pub fn new() -> DexApplicationBuilder {
         let application = DexApplication::new();
-        DexApplicationBuilder{
-            app: application
-        }
+        DexApplicationBuilder { app: application }
     }
     pub fn build(&self) -> DexApplication {
         self.app.clone()

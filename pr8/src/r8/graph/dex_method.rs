@@ -1,6 +1,6 @@
+use crate::r8::graph::dex_proto::DexProto;
 use crate::r8::graph::dex_string::DexString;
 use crate::r8::graph::dex_type::DexType;
-use crate::r8::graph::dex_proto::DexProto;
 
 #[derive(Debug, Clone)]
 pub struct DexMethod {
@@ -14,7 +14,7 @@ impl DexMethod {
         DexMethod {
             holder,
             proto,
-            name
+            name,
         }
     }
 }

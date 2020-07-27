@@ -1,7 +1,3 @@
-pub struct CstArray {
+pub struct CstArray {}
 
-}
-
-impl CstArray {
-
-}
+impl CstArray {}

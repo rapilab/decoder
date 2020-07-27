@@ -2,10 +2,10 @@ use std::path::PathBuf;
 
 use crate::dx::dex::rop::cst::cst_type::CstType;
 use crate::dx::dex::rop::cst::std_constant_pool::StdConstantPool;
-use crate::dx::dex::rop::iface::type_list::TypeList;
 use crate::dx::dex::rop::iface::field_list::FieldList;
 use crate::dx::dex::rop::iface::method_list::MethodList;
 use crate::dx::dex::rop::iface::std_attribute_list::StdAttributeList;
+use crate::dx::dex::rop::iface::type_list::TypeList;
 
 #[derive(Debug, Clone)]
 pub struct DirectClassFile {
@@ -22,7 +22,7 @@ pub struct DirectClassFile {
     interfaces: TypeList,
     fields: FieldList,
     methods: MethodList,
-    attributes: StdAttributeList
+    attributes: StdAttributeList,
 }
 
 impl DirectClassFile {
@@ -40,7 +40,7 @@ impl DirectClassFile {
             interfaces: TypeList {},
             fields: FieldList {},
             methods: MethodList {},
-            attributes: StdAttributeList {}
+            attributes: StdAttributeList {},
         }
     }
 
@@ -71,9 +71,7 @@ impl DirectClassFile {
         self.bytes[0]
     }
 
-    pub fn get_source_file(&self) {
-
-    }
+    pub fn get_source_file(&self) {}
 
     pub fn get_constant_pool(&self) -> StdConstantPool {
         self.constant_pool.clone()

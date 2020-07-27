@@ -1,8 +1,8 @@
-use std::borrow::Borrow;
+use crate::r8::d8_command::D8Command;
 use crate::r8::utils::android_app::AndroidApp;
+use std::borrow::Borrow;
 use std::fs;
 use std::path::PathBuf;
-use crate::r8::d8_command::D8Command;
 
 #[derive(Clone)]
 pub struct D8Builder {
@@ -22,7 +22,7 @@ impl D8Builder {
             synthesized_class_prefix: "".to_string(),
             enable_main_dex_list_check: false,
             minimal_main_dex: false,
-            program_files: vec![]
+            program_files: vec![],
         }
     }
 
@@ -41,7 +41,6 @@ impl D8Builder {
             }
         }
     }
-
 
     pub fn make_command(&self) -> D8Command {
         let mut command = D8Command::new();

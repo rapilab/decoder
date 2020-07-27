@@ -4,7 +4,10 @@ pub trait CodeClone {
     fn clone_box(&self) -> Box<dyn Code>;
 }
 
-impl<T> CodeClone for T where T: 'static + Code + Clone, {
+impl<T> CodeClone for T
+where
+    T: 'static + Code + Clone,
+{
     fn clone_box(&self) -> Box<dyn Code> {
         Box::new(self.clone())
     }
@@ -22,6 +25,4 @@ impl fmt::Debug for dyn Code {
     }
 }
 
-pub trait Code: CodeClone {
-
-}
+pub trait Code: CodeClone {}

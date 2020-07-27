@@ -1,10 +1,10 @@
 use crate::r8::d8_command_parser::D8CommandParser;
-use crate::r8::utils::android_app::AndroidApp;
 use crate::r8::dex::application_reader::ApplicationReader;
 use crate::r8::graph::app_info::AppInfo;
-use crate::r8::ir::ir_converter::IRConverter;
 use crate::r8::graph::app_view::AppView;
+use crate::r8::ir::ir_converter::IRConverter;
 use crate::r8::jar::cf_application_writer::CfApplicationWriter;
+use crate::r8::utils::android_app::AndroidApp;
 
 pub struct D8 {}
 

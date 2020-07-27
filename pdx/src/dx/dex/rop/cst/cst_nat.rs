@@ -1,7 +1,3 @@
-pub struct CstNat {
+pub struct CstNat {}
 
-}
-
-impl CstNat {
-
-}
+impl CstNat {}

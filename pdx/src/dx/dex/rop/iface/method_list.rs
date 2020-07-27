@@ -1,4 +1,2 @@
 #[derive(Debug, Clone)]
-pub struct MethodList {
-
-}
+pub struct MethodList {}

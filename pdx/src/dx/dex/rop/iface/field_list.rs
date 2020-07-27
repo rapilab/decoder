@@ -1,8 +1,4 @@
 #[derive(Debug, Clone)]
-pub struct FieldList {
+pub struct FieldList {}
 
-}
-
-impl FieldList {
-
-}
+impl FieldList {}

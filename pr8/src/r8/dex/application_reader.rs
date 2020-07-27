@@ -1,15 +1,13 @@
-use crate::r8::utils::android_app::AndroidApp;
 use crate::r8::graph::dex_application::DexApplication;
+use crate::r8::utils::android_app::AndroidApp;
 
 pub struct ApplicationReader {
-    app: AndroidApp
+    app: AndroidApp,
 }
 
 impl ApplicationReader {
     pub fn new(app: AndroidApp) -> ApplicationReader {
-        ApplicationReader {
-            app
-        }
+        ApplicationReader { app }
     }
 
     pub fn read(&self) -> DexApplication {

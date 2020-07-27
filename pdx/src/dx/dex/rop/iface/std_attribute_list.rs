@@ -1,4 +1,2 @@
 #[derive(Debug, Clone)]
-pub struct StdAttributeList {
-
-}
+pub struct StdAttributeList {}

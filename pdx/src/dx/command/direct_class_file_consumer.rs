@@ -12,10 +12,7 @@ pub struct DirectClassFileConsumer {
 
 impl DirectClassFileConsumer {
     pub fn new(name: PathBuf, bytes: Vec<u8>) -> DirectClassFileConsumer {
-        DirectClassFileConsumer {
-            name,
-            bytes,
-        }
+        DirectClassFileConsumer { name, bytes }
     }
 
     pub fn call(&self, class: DirectClassFile) {

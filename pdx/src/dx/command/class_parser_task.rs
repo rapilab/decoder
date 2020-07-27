@@ -1,5 +1,5 @@
-use std::path::PathBuf;
 use crate::dx::dex::cf::direct::direct_class_file::DirectClassFile;
+use std::path::PathBuf;
 
 #[derive(Debug, Clone)]
 pub struct ClassParserTask {

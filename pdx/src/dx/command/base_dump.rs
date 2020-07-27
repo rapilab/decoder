@@ -1,3 +1,1 @@
-pub struct BaseDump {
-
-}
+pub struct BaseDump {}

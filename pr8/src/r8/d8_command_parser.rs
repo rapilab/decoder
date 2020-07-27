@@ -1,13 +1,11 @@
-use crate::r8::d8_command::D8Command;
 use crate::r8::d8_builder::D8Builder;
+use crate::r8::d8_command::D8Command;
 
-pub struct D8CommandParser {
-
-}
+pub struct D8CommandParser {}
 
 impl D8CommandParser {
     pub fn new() -> D8CommandParser {
-        D8CommandParser{}
+        D8CommandParser {}
     }
 
     pub fn parse(&self, options: Vec<String>) -> D8Builder {
@@ -18,4 +16,3 @@ impl D8CommandParser {
         builder
     }
 }
-

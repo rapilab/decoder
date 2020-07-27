@@ -1,5 +1,4 @@
 #[derive(Debug, Clone)]
 pub struct Constant {
-    type_name: String
+    type_name: String,
 }
-

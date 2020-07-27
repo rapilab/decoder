@@ -1,7 +1,3 @@
-pub struct TypeConstant {
+pub struct TypeConstant {}
 
-}
-
-impl TypeConstant {
-
-}
+impl TypeConstant {}

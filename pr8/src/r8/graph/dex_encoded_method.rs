@@ -1,8 +1,8 @@
+use crate::r8::graph::code::Code;
+use crate::r8::graph::dex_annotation_set::DexAnnotationSet;
 use crate::r8::graph::dex_method::DexMethod;
 use crate::r8::graph::method_access_flags::MethodAccessFlags;
-use crate::r8::graph::dex_annotation_set::DexAnnotationSet;
 use crate::r8::graph::parameter_annotations_list::ParameterAnnotationsList;
-use crate::r8::graph::code::Code;
 
 #[derive(Debug, Clone)]
 pub struct DexEncodedMethod {
@@ -10,16 +10,14 @@ pub struct DexEncodedMethod {
     access_flags: MethodAccessFlags,
     annotations: DexAnnotationSet,
     parameter_annotations_list: ParameterAnnotationsList,
-    code: Box<dyn Code>
+    code: Box<dyn Code>,
 }
 
 impl DexEncodedMethod {
-    pub fn new() {
-
-    }
+    pub fn new() {}
 
     pub fn is_class_initializer(&self) -> bool {
         // self.access_flags.is_constructor();
-        return false
+        return false;
     }
 }

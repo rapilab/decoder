@@ -1,12 +1,8 @@
 #[derive(Debug, Clone)]
-pub struct CstType {
-
-}
+pub struct CstType {}
 
 impl CstType {
     pub fn new() -> CstType {
-        CstType {
-
-        }
+        CstType {}
     }
 }

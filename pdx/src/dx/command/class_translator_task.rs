@@ -1,20 +1,16 @@
-use std::path::PathBuf;
 use crate::dx::command::dexer::translate_class;
 use crate::dx::dex::cf::direct::direct_class_file::DirectClassFile;
+use std::path::PathBuf;
 
 pub struct ClassTranslatorTask {
     name: PathBuf,
     bytes: Vec<u8>,
-    pub cf: DirectClassFile
+    pub cf: DirectClassFile,
 }
 
 impl ClassTranslatorTask {
     pub fn new(name: PathBuf, bytes: Vec<u8>, cf: DirectClassFile) -> ClassTranslatorTask {
-        ClassTranslatorTask {
-            name,
-            bytes,
-            cf
-        }
+        ClassTranslatorTask { name, bytes, cf }
     }
 
     pub fn call(&self) {

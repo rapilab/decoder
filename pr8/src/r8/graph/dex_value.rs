@@ -1,4 +1,2 @@
 #[derive(Debug, Clone)]
-pub struct DexValue {
-
-}
+pub struct DexValue {}

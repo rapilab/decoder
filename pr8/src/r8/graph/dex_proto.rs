@@ -6,7 +6,7 @@ use crate::r8::graph::dex_type_list::DexTypeList;
 pub struct DexProto {
     shorty: DexString,
     return_type: DexType,
-    parameters: DexTypeList
+    parameters: DexTypeList,
 }
 
 impl DexProto {
@@ -14,7 +14,7 @@ impl DexProto {
         DexProto {
             shorty,
             return_type,
-            parameters
+            parameters,
         }
     }
 }

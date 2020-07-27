@@ -1,13 +1,13 @@
-use std::path::{PathBuf};
 use crate::r8::graph::dex_program_class::DexProgramClass;
+use std::path::PathBuf;
 
 pub trait ProviderClone {
     fn clone_box(&self) -> Box<dyn ClassFileResourceProvider>;
 }
 
 impl<T> ProviderClone for T
-    where
-        T: 'static + ClassFileResourceProvider + Clone,
+where
+    T: 'static + ClassFileResourceProvider + Clone,
 {
     fn clone_box(&self) -> Box<dyn ClassFileResourceProvider> {
         Box::new(self.clone())
@@ -42,7 +42,7 @@ impl AndroidApp {
 
     fn is_file_by_type(path_buf: PathBuf, suffix: String) -> bool {
         // path_buf.as_path().ends_with(suffix)
-        return true
+        return true;
     }
 
     // todo: implement it

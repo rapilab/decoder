@@ -1,11 +1,8 @@
-
-pub trait  ClassFileConsumer {
+pub trait ClassFileConsumer {
     fn accept(&self);
 }
 
-pub struct ForwardingConsumer {
-
-}
+pub struct ForwardingConsumer {}
 
 impl ForwardingConsumer {
     pub fn new() -> ForwardingConsumer {
@@ -14,7 +11,5 @@ impl ForwardingConsumer {
 }
 
 impl ClassFileConsumer for ForwardingConsumer {
-    fn accept(&self) {
-
-    }
+    fn accept(&self) {}
 }
