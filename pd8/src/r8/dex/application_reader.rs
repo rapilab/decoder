@@ -14,8 +14,8 @@ impl ApplicationReader {
 
     pub fn read(&self) -> DexApplication {
         let builder = DexApplication::builder();
-        builder.build();
+        let application = builder.build();
 
-        DexApplication::new()
+        application
     }
 }
