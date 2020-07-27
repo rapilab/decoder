@@ -1,5 +1,5 @@
 [package]
-name = "pd8"
+name = "pr8"
 version = "0.1.0"
 authors = ["Phodal Huang <h@phodal.com>"]
 edition = "2018"
@@ -10,5 +10,5 @@ edition = "2018"
 log = "0.4"
 
 [lib]
-name = "pd8"
+name = "pr8"
 path = "src/lib.rs"

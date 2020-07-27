@@ -597,13 +597,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "pd8"
-version = "0.1.0"
-dependencies = [
- "log 0.4.11 (registry+https://github.com/rust-lang/crates.io-index)",
-]
-
-[[package]]
 name = "pdex"
 version = "0.1.0"
 dependencies = [
@@ -650,6 +643,13 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 name = "ppv-lite86"
 version = "0.2.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "pr8"
+version = "0.1.0"
+dependencies = [
+ "log 0.4.11 (registry+https://github.com/rust-lang/crates.io-index)",
+]
 
 [[package]]
 name = "proc-macro-error"
