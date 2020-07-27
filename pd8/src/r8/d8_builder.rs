@@ -1,13 +1,17 @@
 use std::borrow::Borrow;
 use crate::r8::utils::android_app::AndroidApp;
 use std::fs;
+use std::path::PathBuf;
+use crate::r8::d8_command::D8Command;
 
+#[derive(Clone)]
 pub struct D8Builder {
-    app: AndroidApp,
+    pub(crate) app: AndroidApp,
     intermediate: bool,
     synthesized_class_prefix: String,
     enable_main_dex_list_check: bool,
-    minimal_main_dex: bool
+    minimal_main_dex: bool,
+    program_files: Vec<PathBuf>,
 }
 
 impl D8Builder {
@@ -17,7 +21,8 @@ impl D8Builder {
             intermediate: false,
             synthesized_class_prefix: "".to_string(),
             enable_main_dex_list_check: false,
-            minimal_main_dex: false
+            minimal_main_dex: false,
+            program_files: vec![]
         }
     }
 
@@ -25,14 +30,26 @@ impl D8Builder {
         self.intermediate = value;
     }
 
-    pub fn add_program_files(&self, str: String) {
+    pub fn add_program_files(&mut self, str: String) {
         let paths = fs::read_dir("./").unwrap();
         for dir in paths {
             let path = dir.unwrap().path();
 
             if path.is_file() {
-                &self.app.add_program_file(path);
+                &self.app.add_program_file(path.clone());
+                &self.program_files.push(path.clone());
             }
         }
+    }
+
+
+    pub fn make_command(&self) -> D8Command {
+        let mut command = D8Command::new();
+        command.app = self.app.clone();
+        command
+    }
+
+    pub fn build(&self) {
+        self.make_command();
     }
 }

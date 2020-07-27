@@ -17,12 +17,5 @@ impl D8CommandParser {
         builder.set_intermediate(true);
         builder
     }
-
-    pub fn make_command(&self) {
-
-    }
-    pub fn build(&self) {
-        self.make_command();
-    }
 }
 

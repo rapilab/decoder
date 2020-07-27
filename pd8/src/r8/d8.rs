@@ -8,9 +8,10 @@ impl D8 {
     }
 
     pub fn run() {
-        let parser = D8CommandParser::new().build();
-        // let builder = parser.parse();
-
+        let mut options = vec![];
+        options.push(String::from(""));
+        let parser = D8CommandParser::new().parse(options);
+        parser.build();
     }
 }
 
