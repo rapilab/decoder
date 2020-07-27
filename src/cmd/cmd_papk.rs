@@ -18,6 +18,7 @@ mod tests {
     use crate::cmd_papk;
 
     #[test]
+    #[ignore]
     fn test_main_parse_apk_binary() {
         cmd_papk(String::from("../_fixtures/apk/app-release-unsigned.apk"));
     }
