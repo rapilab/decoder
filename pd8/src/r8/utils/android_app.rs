@@ -1,4 +1,5 @@
 use std::path::{PathBuf};
+use crate::r8::graph::dex_program_class::DexProgramClass;
 
 pub trait ProviderClone {
     fn clone_box(&self) -> Box<dyn ClassFileResourceProvider>;
@@ -37,6 +38,11 @@ impl AndroidApp {
             classpath_resource_providers: vec![],
             library_resource_providers: vec![],
         }
+    }
+
+    pub fn classes(&self) -> Vec<DexProgramClass> {
+        let classes: Vec<DexProgramClass> = vec![];
+        classes
     }
 
 

@@ -1,6 +1,7 @@
 use crate::r8::d8_command_parser::D8CommandParser;
 use crate::r8::utils::android_app::AndroidApp;
 use crate::r8::dex::application_reader::ApplicationReader;
+use crate::r8::graph::app_info::AppInfo;
 
 pub struct D8 {}
 
@@ -19,8 +20,10 @@ impl D8 {
     }
 
     fn run(app: AndroidApp) {
-        let reader = ApplicationReader::new(app);
+        let reader = ApplicationReader::new(app.clone());
         reader.read();
+        let appInfo = AppInfo::new(app);
+        appInfo.classes();
     }
 }
 
