@@ -17,4 +17,9 @@ impl DexEncodedMethod {
     pub fn new() {
 
     }
+
+    pub fn is_class_initializer(&self) -> bool {
+        // self.access_flags.is_constructor();
+        return false
+    }
 }

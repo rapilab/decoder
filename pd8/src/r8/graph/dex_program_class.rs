@@ -17,8 +17,8 @@ pub struct DexProgramClass {
     class_annotations: String,
     static_fields: String,
     instance_fields: String,
-    direct_methods: Vec<DexEncodedMethod>,
-    virtual_methods: Vec<DexEncodedMethod>,
+    pub direct_methods: Vec<DexEncodedMethod>,
+    pub virtual_methods: Vec<DexEncodedMethod>,
 
     method_collection: Option<MethodCollection>
 }
@@ -54,8 +54,8 @@ impl DexProgramClass {
         class
     }
 
-    pub fn get_class_initializer(&self) {
+    pub fn get_class_initializer(&self) -> Option<DexEncodedMethod> {
         let collection = self.method_collection.as_ref().unwrap();
-        collection.get_class_initializer();
+        collection.get_class_initializer()
     }
 }

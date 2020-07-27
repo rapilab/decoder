@@ -17,7 +17,13 @@ impl MethodCollection {
         }
     }
 
-    pub fn get_class_initializer(&self) {
+    pub fn get_class_initializer(&self) -> Option<DexEncodedMethod> {
+        for method in self.direct_methods {
+            if method.is_class_initializer() {
+                return Some(method)
+            }
+        }
 
+        None
     }
 }
