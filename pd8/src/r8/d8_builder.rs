@@ -49,7 +49,7 @@ impl D8Builder {
         command
     }
 
-    pub fn build(&self) {
-        self.make_command();
+    pub fn build(&self) -> D8Command {
+        self.make_command()
     }
 }
