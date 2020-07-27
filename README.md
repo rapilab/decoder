@@ -144,6 +144,8 @@ I: Copying original files...
 License
 ---
 
+PR8 based on [https://r8.googlesource.com/r8](https://r8.googlesource.com/r8) with Apache 2.0 see in directory.
+
 [![Phodal's Idea](http://brand.phodal.com/shields/idea-small.svg)](http://ideas.phodal.com/)
 
 @ 2020 A [Phodal Huang](https://www.phodal.com)'s [Idea](http://github.com/phodal/ideas).  This code is distributed under the MPL license. See `LICENSE` in this directory.
