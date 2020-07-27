@@ -1,3 +1,5 @@
+use crate::r8::graph::lazy_loaded_dex_application::LazyLoadedDexApplicationBuilder;
+
 pub struct DexApplication {}
 
 impl DexApplication {
@@ -5,18 +7,8 @@ impl DexApplication {
         DexApplication {}
     }
 
-    pub fn builder() -> DexApplicationBuilder {
-        let builder = DexApplicationBuilder::new();
+    pub fn builder() -> LazyLoadedDexApplicationBuilder {
+        let builder = LazyLoadedDexApplicationBuilder::new();
         builder
-    }
-}
-
-pub struct DexApplicationBuilder {
-
-}
-
-impl DexApplicationBuilder {
-    pub fn new() -> DexApplicationBuilder {
-        DexApplicationBuilder {}
     }
 }
