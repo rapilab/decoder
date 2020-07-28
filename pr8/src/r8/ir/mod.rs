@@ -7,3 +7,4 @@ pub mod service_loader_rewriter;
 pub mod lambda_merger;
 pub mod inliner;
 pub mod code_rewriter;
+pub mod string_optimizer;

@@ -14,6 +14,7 @@ use crate::r8::ir::inliner::Inliner;
 use crate::r8::ir::lambda_merger::LambdaMerger;
 use crate::r8::ir::service_loader_rewriter::ServiceLoaderRewriter;
 use crate::r8::ir::code_rewriter::CodeRewriter;
+use crate::r8::ir::string_optimizer::StringOptimizer;
 
 pub struct IRConverter {
     app_view: AppView,
@@ -23,6 +24,7 @@ pub struct IRConverter {
     pub lambda_merger: LambdaMerger,
     pub service_loader_rewriter: ServiceLoaderRewriter,
     pub code_rewriter: CodeRewriter,
+    pub string_optimizer: StringOptimizer
 }
 
 impl IRConverter {
@@ -33,7 +35,7 @@ impl IRConverter {
         let lambda_merger = LambdaMerger::new(app_view.clone());
         let inliner = Inliner::new(app_view.clone(), lens_code_rewriter.clone(), lambda_merger.clone());
         let service_loader_rewriter = ServiceLoaderRewriter::new(app_view.clone());
-
+        let string_optimizer = StringOptimizer::new(app_view.clone());
         IRConverter {
             app_view,
             lens_code_rewriter,
@@ -42,6 +44,7 @@ impl IRConverter {
             inliner,
             service_loader_rewriter,
             code_rewriter,
+            string_optimizer
         }
     }
 
@@ -70,6 +73,11 @@ impl IRConverter {
         self.service_loader_rewriter.rewrite(code.clone());
 
         // todo: add more rewriter
+
+        // string
+        self.string_optimizer.rewrite_class_get_name(self.app_view.clone(), code);
+        self.string_optimizer.compute_trivial_operations_on_const_string(code);
+        self.string_optimizer.remove_trivial_conversions(code);
 
         // code rewriter
         self.code_rewriter.rewrite_known_array_length_calls(code.clone());
