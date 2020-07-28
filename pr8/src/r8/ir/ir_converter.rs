@@ -5,6 +5,8 @@ use crate::r8::graph::dex_program_class::DexProgramClass;
 use crate::r8::graph::lazy_loaded_dex_application::LazyLoadedDexApplicationBuilder;
 use crate::r8::graph::program_method::ProgramMethod;
 use std::time::Instant;
+use std::ptr::null;
+use crate::r8::ir::conversion::one_time_method_processor::OneTimeMethodProcessor;
 
 pub struct IRConverter {
     app_view: AppView,
@@ -15,7 +17,18 @@ impl IRConverter {
         IRConverter { app_view }
     }
 
-    pub fn convert_method(&self, method: ProgramMethod) {}
+    pub fn rewrite_code(&self, method: ProgramMethod, processor: OneTimeMethodProcessor) {
+        // let code = method.buildIR(appView);
+        // self.optimize(code)
+    }
+
+    pub fn convert_method(&self, method: ProgramMethod) {
+        let definition = method.get_definition();
+        if definition.get_code() {
+            let processor = OneTimeMethodProcessor::create(method.clone(), self.app_view.clone());
+            self.rewrite_code(method, processor);
+        }
+    }
 
     pub fn convert_methods(&self, clazz: DexProgramClass) {
         let option = clazz.clone().get_class_initializer();
