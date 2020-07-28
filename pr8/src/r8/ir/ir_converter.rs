@@ -18,16 +18,16 @@ impl IRConverter {
     }
 
     pub fn rewrite_code(&self, method: ProgramMethod, processor: OneTimeMethodProcessor) {
-        // let code = method.buildIR(appView);
+        let code = method.build_ir(self.app_view.clone());
         // self.optimize(code)
     }
 
     pub fn convert_method(&self, method: ProgramMethod) {
-        let definition = method.get_definition();
-        if definition.get_code() {
+        // let definition = method.get_definition();
+        // if definition.get_code() {
             let processor = OneTimeMethodProcessor::create(method.clone(), self.app_view.clone());
             self.rewrite_code(method, processor);
-        }
+        // }
     }
 
     pub fn convert_methods(&self, clazz: DexProgramClass) {
