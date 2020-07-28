@@ -1,14 +1,14 @@
-use core::fmt;
 use crate::r8::graph::app_view::AppView;
 use crate::r8::graph::program_method::ProgramMethod;
+use core::fmt;
 
 pub trait CodeClone {
     fn clone_box(&self) -> Box<dyn Code>;
 }
 
 impl<T> CodeClone for T
-    where
-        T: 'static + Code + Clone,
+where
+    T: 'static + Code + Clone,
 {
     fn clone_box(&self) -> Box<dyn Code> {
         Box::new(self.clone())

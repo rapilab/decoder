@@ -2,7 +2,7 @@ use crate::r8::graph::app_view::AppView;
 use crate::r8::ir::code::ir_code::IRCode;
 
 pub struct ServiceLoaderRewriter {
-    app_view: AppView
+    app_view: AppView,
 }
 
 impl ServiceLoaderRewriter {
@@ -10,7 +10,5 @@ impl ServiceLoaderRewriter {
         ServiceLoaderRewriter { app_view }
     }
 
-    pub fn rewrite(&self, code: IRCode) {
-
-    }
+    pub fn rewrite(&self, code: IRCode) {}
 }

@@ -3,9 +3,7 @@ pub struct R8 {}
 impl R8 {
     pub fn start() {}
 
-    pub fn run() {
-
-    }
+    pub fn run() {}
 }
 
 #[cfg(test)]

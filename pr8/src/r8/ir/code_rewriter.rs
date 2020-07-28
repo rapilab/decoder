@@ -2,7 +2,7 @@ use crate::r8::graph::app_view::AppView;
 use crate::r8::ir::code::ir_code::IRCode;
 
 pub struct CodeRewriter {
-    pub app_view: AppView
+    pub app_view: AppView,
 }
 
 impl CodeRewriter {

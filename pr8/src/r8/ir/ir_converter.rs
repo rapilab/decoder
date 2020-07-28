@@ -4,17 +4,17 @@ use crate::r8::graph::dex_encoded_method::DexEncodedMethod;
 use crate::r8::graph::dex_program_class::DexProgramClass;
 use crate::r8::graph::lazy_loaded_dex_application::LazyLoadedDexApplicationBuilder;
 use crate::r8::graph::program_method::ProgramMethod;
-use std::time::Instant;
-use std::ptr::null;
-use crate::r8::ir::conversion::one_time_method_processor::OneTimeMethodProcessor;
 use crate::r8::ir::code::ir_code::IRCode;
-use crate::r8::ir::lens_code_rewriter::LensCodeRewriter;
-use crate::r8::ir::lambda_rewriter::LambdaRewriter;
+use crate::r8::ir::code_rewriter::CodeRewriter;
+use crate::r8::ir::conversion::one_time_method_processor::OneTimeMethodProcessor;
 use crate::r8::ir::inliner::Inliner;
 use crate::r8::ir::lambda_merger::LambdaMerger;
+use crate::r8::ir::lambda_rewriter::LambdaRewriter;
+use crate::r8::ir::lens_code_rewriter::LensCodeRewriter;
 use crate::r8::ir::service_loader_rewriter::ServiceLoaderRewriter;
-use crate::r8::ir::code_rewriter::CodeRewriter;
 use crate::r8::ir::string_optimizer::StringOptimizer;
+use std::ptr::null;
+use std::time::Instant;
 
 pub struct IRConverter {
     app_view: AppView,
@@ -24,7 +24,7 @@ pub struct IRConverter {
     pub lambda_merger: LambdaMerger,
     pub service_loader_rewriter: ServiceLoaderRewriter,
     pub code_rewriter: CodeRewriter,
-    pub string_optimizer: StringOptimizer
+    pub string_optimizer: StringOptimizer,
 }
 
 impl IRConverter {
@@ -33,7 +33,11 @@ impl IRConverter {
         let code_rewriter = CodeRewriter::new(app_view.clone());
         let lambda_rewriter = LambdaRewriter::new(app_view.clone());
         let lambda_merger = LambdaMerger::new(app_view.clone());
-        let inliner = Inliner::new(app_view.clone(), lens_code_rewriter.clone(), lambda_merger.clone());
+        let inliner = Inliner::new(
+            app_view.clone(),
+            lens_code_rewriter.clone(),
+            lambda_merger.clone(),
+        );
         let service_loader_rewriter = ServiceLoaderRewriter::new(app_view.clone());
         let string_optimizer = StringOptimizer::new(app_view.clone());
         IRConverter {
@@ -44,7 +48,7 @@ impl IRConverter {
             inliner,
             service_loader_rewriter,
             code_rewriter,
-            string_optimizer
+            string_optimizer,
         }
     }
 
@@ -58,7 +62,10 @@ impl IRConverter {
         let method = context.clone().method;
         let holder = context.clone().holder;
 
-        println!("Initial (SSA) flow graph {:?}", Instant::now().elapsed().as_secs());
+        println!(
+            "Initial (SSA) flow graph {:?}",
+            Instant::now().elapsed().as_secs()
+        );
 
         println!("Lens rewrite");
         self.lens_code_rewriter.rewrite(code.clone(), context);
@@ -67,7 +74,8 @@ impl IRConverter {
         self.lambda_rewriter.desugar_lambdas(code.clone());
 
         println!("Merge lambdas");
-        self.lambda_merger.rewrite_code(code.context(), code.clone(), self.inliner.clone());
+        self.lambda_merger
+            .rewrite_code(code.context(), code.clone(), self.inliner.clone());
 
         println!("Rewrite service loaders");
         self.service_loader_rewriter.rewrite(code.clone());
@@ -75,18 +83,26 @@ impl IRConverter {
         // todo: add more rewriter
 
         // string
-        self.string_optimizer.rewrite_class_get_name(self.app_view.clone(), code.clone());
-        self.string_optimizer.compute_trivial_operations_on_const_string(code.clone());
-        self.string_optimizer.remove_trivial_conversions(code.clone());
+        self.string_optimizer
+            .rewrite_class_get_name(self.app_view.clone(), code.clone());
+        self.string_optimizer
+            .compute_trivial_operations_on_const_string(code.clone());
+        self.string_optimizer
+            .remove_trivial_conversions(code.clone());
 
         // code rewriter
-        self.code_rewriter.rewrite_known_array_length_calls(code.clone());
-        self.code_rewriter.rewrite_assertion_error_two_argument_constructor(code.clone());
-        self.code_rewriter.common_subexpression_elimination(code.clone());
+        self.code_rewriter
+            .rewrite_known_array_length_calls(code.clone());
+        self.code_rewriter
+            .rewrite_assertion_error_two_argument_constructor(code.clone());
+        self.code_rewriter
+            .common_subexpression_elimination(code.clone());
         self.code_rewriter.simplify_array_construction(code.clone());
         self.code_rewriter.rewrite_move_result(code.clone());
-        self.code_rewriter.split_range_invoke_constants(code.clone());
-        self.code_rewriter.optimize_always_throwing_instructions(code.clone());
+        self.code_rewriter
+            .split_range_invoke_constants(code.clone());
+        self.code_rewriter
+            .optimize_always_throwing_instructions(code.clone());
     }
     pub fn convert_method(&self, method: ProgramMethod) {
         // let definition = method.get_definition();

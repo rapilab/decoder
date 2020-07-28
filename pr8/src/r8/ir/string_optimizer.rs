@@ -2,7 +2,7 @@ use crate::r8::graph::app_view::AppView;
 use crate::r8::ir::code::ir_code::IRCode;
 
 pub struct StringOptimizer {
-    pub app_view: AppView
+    pub app_view: AppView,
 }
 
 impl StringOptimizer {

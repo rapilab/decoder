@@ -22,6 +22,6 @@ impl DexEncodedMethod {
     }
 
     pub fn get_code(&self) -> Box<dyn Code> {
-        return self.code.clone()
+        return self.code.clone();
     }
 }

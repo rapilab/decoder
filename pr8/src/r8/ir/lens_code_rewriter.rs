@@ -4,7 +4,7 @@ use crate::r8::ir::code::ir_code::IRCode;
 
 #[derive(Clone, Debug)]
 pub struct LensCodeRewriter {
-    pub app_view: AppView
+    pub app_view: AppView,
 }
 
 impl LensCodeRewriter {
@@ -12,7 +12,5 @@ impl LensCodeRewriter {
         LensCodeRewriter { app_view }
     }
 
-    pub fn rewrite(&self, code: IRCode, context: ProgramMethod) {
-
-    }
+    pub fn rewrite(&self, code: IRCode, context: ProgramMethod) {}
 }

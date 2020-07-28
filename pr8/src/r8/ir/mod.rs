@@ -1,10 +1,10 @@
 pub mod code;
-pub mod conversion;
-pub mod ir_converter;
-pub mod lens_code_rewriter;
-pub mod lambda_rewriter;
-pub mod service_loader_rewriter;
-pub mod lambda_merger;
-pub mod inliner;
 pub mod code_rewriter;
+pub mod conversion;
+pub mod inliner;
+pub mod ir_converter;
+pub mod lambda_merger;
+pub mod lambda_rewriter;
+pub mod lens_code_rewriter;
+pub mod service_loader_rewriter;
 pub mod string_optimizer;
