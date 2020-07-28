@@ -75,9 +75,9 @@ impl IRConverter {
         // todo: add more rewriter
 
         // string
-        self.string_optimizer.rewrite_class_get_name(self.app_view.clone(), code);
-        self.string_optimizer.compute_trivial_operations_on_const_string(code);
-        self.string_optimizer.remove_trivial_conversions(code);
+        self.string_optimizer.rewrite_class_get_name(self.app_view.clone(), code.clone());
+        self.string_optimizer.compute_trivial_operations_on_const_string(code.clone());
+        self.string_optimizer.remove_trivial_conversions(code.clone());
 
         // code rewriter
         self.code_rewriter.rewrite_known_array_length_calls(code.clone());
