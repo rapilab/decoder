@@ -13,6 +13,7 @@ use crate::r8::ir::lambda_rewriter::LambdaRewriter;
 use crate::r8::ir::inliner::Inliner;
 use crate::r8::ir::lambda_merger::LambdaMerger;
 use crate::r8::ir::service_loader_rewriter::ServiceLoaderRewriter;
+use crate::r8::ir::code_rewriter::CodeRewriter;
 
 pub struct IRConverter {
     app_view: AppView,
@@ -20,19 +21,27 @@ pub struct IRConverter {
     pub lambda_rewriter: LambdaRewriter,
     pub inliner: Inliner,
     pub lambda_merger: LambdaMerger,
-    pub service_loader_rewriter: ServiceLoaderRewriter
+    pub service_loader_rewriter: ServiceLoaderRewriter,
+    pub code_rewriter: CodeRewriter,
 }
 
 impl IRConverter {
     pub fn new(app_view: AppView) -> IRConverter {
         let lens_code_rewriter = LensCodeRewriter::new(app_view.clone());
+        let code_rewriter = CodeRewriter::new(app_view.clone());
         let lambda_rewriter = LambdaRewriter::new(app_view.clone());
         let lambda_merger = LambdaMerger::new(app_view.clone());
-        let inliner = Inliner::new(app_view.clone(),  lens_code_rewriter.clone(), lambda_merger.clone());
+        let inliner = Inliner::new(app_view.clone(), lens_code_rewriter.clone(), lambda_merger.clone());
         let service_loader_rewriter = ServiceLoaderRewriter::new(app_view.clone());
 
         IRConverter {
-            app_view, lens_code_rewriter, lambda_rewriter, lambda_merger, inliner, service_loader_rewriter
+            app_view,
+            lens_code_rewriter,
+            lambda_rewriter,
+            lambda_merger,
+            inliner,
+            service_loader_rewriter,
+            code_rewriter,
         }
     }
 
@@ -60,6 +69,16 @@ impl IRConverter {
         println!("Rewrite service loaders");
         self.service_loader_rewriter.rewrite(code.clone());
 
+        // todo: add more rewriter
+
+        // code rewriter
+        self.code_rewriter.rewrite_known_array_length_calls(code.clone());
+        self.code_rewriter.rewrite_assertion_error_two_argument_constructor(code.clone());
+        self.code_rewriter.common_subexpression_elimination(code.clone());
+        self.code_rewriter.simplify_array_construction(code.clone());
+        self.code_rewriter.rewrite_move_result(code.clone());
+        self.code_rewriter.split_range_invoke_constants(code.clone());
+        self.code_rewriter.optimize_always_throwing_instructions(code.clone());
     }
     pub fn convert_method(&self, method: ProgramMethod) {
         // let definition = method.get_definition();
