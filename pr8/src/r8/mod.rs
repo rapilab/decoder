@@ -1,3 +1,4 @@
+pub mod r8;
 pub mod d8;
 pub mod d8_builder;
 pub mod d8_command;
