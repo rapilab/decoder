@@ -12,13 +12,15 @@ use crate::r8::ir::lens_code_rewriter::LensCodeRewriter;
 use crate::r8::ir::lambda_rewriter::LambdaRewriter;
 use crate::r8::ir::inliner::Inliner;
 use crate::r8::ir::lambda_merger::LambdaMerger;
+use crate::r8::ir::service_loader_rewriter::ServiceLoaderRewriter;
 
 pub struct IRConverter {
     app_view: AppView,
     pub lens_code_rewriter: LensCodeRewriter,
     pub lambda_rewriter: LambdaRewriter,
     pub inliner: Inliner,
-    pub lambda_merger: LambdaMerger
+    pub lambda_merger: LambdaMerger,
+    pub service_loader_rewriter: ServiceLoaderRewriter
 }
 
 impl IRConverter {
@@ -27,8 +29,10 @@ impl IRConverter {
         let lambda_rewriter = LambdaRewriter::new(app_view.clone());
         let lambda_merger = LambdaMerger::new(app_view.clone());
         let inliner = Inliner::new(app_view.clone(),  lens_code_rewriter.clone(), lambda_merger.clone());
+        let service_loader_rewriter = ServiceLoaderRewriter::new(app_view.clone());
+
         IRConverter {
-            app_view, lens_code_rewriter, lambda_rewriter, lambda_merger, inliner
+            app_view, lens_code_rewriter, lambda_rewriter, lambda_merger, inliner, service_loader_rewriter
         }
     }
 
@@ -51,7 +55,11 @@ impl IRConverter {
         self.lambda_rewriter.desugar_lambdas(code.clone());
 
         println!("Merge lambdas");
-        self.lambda_merger.rewrite_code(code.context(), code, self.inliner.clone());
+        self.lambda_merger.rewrite_code(code.context(), code.clone(), self.inliner.clone());
+
+        println!("Rewrite service loaders");
+        self.service_loader_rewriter.rewrite(code.clone());
+
     }
     pub fn convert_method(&self, method: ProgramMethod) {
         // let definition = method.get_definition();
