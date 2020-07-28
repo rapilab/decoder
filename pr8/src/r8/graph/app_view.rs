@@ -1,6 +1,6 @@
 use crate::r8::graph::app_info::AppInfo;
 
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct AppView {
     app_info: AppInfo,
 }

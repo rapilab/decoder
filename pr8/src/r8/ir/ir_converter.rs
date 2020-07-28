@@ -7,26 +7,57 @@ use crate::r8::graph::program_method::ProgramMethod;
 use std::time::Instant;
 use std::ptr::null;
 use crate::r8::ir::conversion::one_time_method_processor::OneTimeMethodProcessor;
+use crate::r8::ir::code::ir_code::IRCode;
+use crate::r8::ir::lens_code_rewriter::LensCodeRewriter;
+use crate::r8::ir::lambda_rewriter::LambdaRewriter;
+use crate::r8::ir::inliner::Inliner;
+use crate::r8::ir::lambda_merger::LambdaMerger;
 
 pub struct IRConverter {
     app_view: AppView,
+    pub lens_code_rewriter: LensCodeRewriter,
+    pub lambda_rewriter: LambdaRewriter,
+    pub inliner: Inliner,
+    pub lambda_merger: LambdaMerger
 }
 
 impl IRConverter {
     pub fn new(app_view: AppView) -> IRConverter {
-        IRConverter { app_view }
+        let lens_code_rewriter = LensCodeRewriter::new(app_view.clone());
+        let lambda_rewriter = LambdaRewriter::new(app_view.clone());
+        let lambda_merger = LambdaMerger::new(app_view.clone());
+        let inliner = Inliner::new(app_view.clone(),  lens_code_rewriter.clone(), lambda_merger.clone());
+        IRConverter {
+            app_view, lens_code_rewriter, lambda_rewriter, lambda_merger, inliner
+        }
     }
 
     pub fn rewrite_code(&self, method: ProgramMethod, processor: OneTimeMethodProcessor) {
         let code = method.build_ir(self.app_view.clone());
-        // self.optimize(code)
+        self.optimize(code, processor)
     }
 
+    pub fn optimize(&self, code: IRCode, processor: OneTimeMethodProcessor) {
+        let context = code.context();
+        let method = context.clone().method;
+        let holder = context.clone().holder;
+
+        println!("Initial (SSA) flow graph {:?}", Instant::now().elapsed().as_secs());
+
+        println!("Lens rewrite");
+        self.lens_code_rewriter.rewrite(code.clone(), context);
+
+        println!("Desugar lambdas");
+        self.lambda_rewriter.desugar_lambdas(code.clone());
+
+        println!("Merge lambdas");
+        self.lambda_merger.rewrite_code(code.context(), code, self.inliner.clone());
+    }
     pub fn convert_method(&self, method: ProgramMethod) {
         // let definition = method.get_definition();
         // if definition.get_code() {
-            let processor = OneTimeMethodProcessor::create(method.clone(), self.app_view.clone());
-            self.rewrite_code(method, processor);
+        let processor = OneTimeMethodProcessor::create(method.clone(), self.app_view.clone());
+        self.rewrite_code(method, processor);
         // }
     }
 

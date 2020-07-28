@@ -1,6 +1,6 @@
 use crate::r8::graph::dex_application::DexApplication;
 
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct AppInfo {
     pub(crate) app: DexApplication,
 }
