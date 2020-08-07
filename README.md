@@ -14,6 +14,17 @@
 decoder --papk _fixtures/apk/app-release-unsigned.apk
 ```
 
+related project: [Androguard](https://github.com/androguard/androguard)
+
+Androguard is a full python tool to play with Android files.
+
+ - DEX, ODEX
+ - APK
+ - Android's binary xml
+ - Android resources
+ - Disassemble DEX/ODEX bytecodes
+ - Decompiler for DEX/ODEX files
+
 ## Library
 
 [Apktool](https://github.com/iBotPeaches/Apktool) is  A tool for reverse engineering Android apk files.
