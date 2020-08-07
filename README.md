@@ -14,7 +14,13 @@
 decoder --papk _fixtures/apk/app-release-unsigned.apk
 ```
 
-related project: [Androguard](https://github.com/androguard/androguard)
+related project:
+
+#### [JADX](https://github.com/skylot/jadx)
+
+ - Command line and GUI tools for producing Java source code from Android Dex and Apk files
+
+#### [Androguard](https://github.com/androguard/androguard)
 
 Androguard is a full python tool to play with Android files.
 
@@ -25,9 +31,13 @@ Androguard is a full python tool to play with Android files.
  - Disassemble DEX/ODEX bytecodes
  - Decompiler for DEX/ODEX files
 
+Horks:
+
+ - [Simli](https://github.com/Zke1ev3n/BakkSmali)  is a python tool that can transfrom dex file to smali text.And it's forked form the dex parser writed by yanfeng.wyf.It still has some problems.
+
 ## Library
 
-[Apktool](https://github.com/iBotPeaches/Apktool) is  A tool for reverse engineering Android apk files.
+ - [Apktool](https://github.com/iBotPeaches/Apktool) is  A tool for reverse engineering Android apk files.
 
 ### Dalvik
 
